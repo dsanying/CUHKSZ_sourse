@@ -4,7 +4,7 @@ import path from "node:path"
 
 import { REPO_ROOT } from "./repo-utils.mjs"
 
-const planPath = path.join(REPO_ROOT, "docs", "resource-rename-plan.json")
+const planPath = path.join(REPO_ROOT, ".local-audit", "resource-rename-plan.json")
 const plans = JSON.parse(readFileSync(planPath, "utf8"))
 
 for (const plan of plans) {

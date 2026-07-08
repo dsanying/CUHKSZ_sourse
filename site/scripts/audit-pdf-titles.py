@@ -94,9 +94,9 @@ def extract_record(path: Path) -> dict[str, object]:
 def main() -> None:
     records = [extract_record(path) for path in collect_pdfs()]
 
-    docs_dir = REPO_ROOT / "docs"
-    docs_dir.mkdir(exist_ok=True)
-    (docs_dir / "pdf-title-audit.json").write_text(
+    audit_dir = REPO_ROOT / ".local-audit"
+    audit_dir.mkdir(exist_ok=True)
+    (audit_dir / "pdf-title-audit.json").write_text(
         json.dumps(records, ensure_ascii=False, indent=2) + "\n",
         encoding="utf-8",
     )
@@ -132,7 +132,7 @@ def main() -> None:
             f"{record['note']} |"
         )
 
-    (docs_dir / "pdf-title-audit.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
+    (audit_dir / "pdf-title-audit.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
     print(f"已核对 {len(records)} 个 PDF。")
     print(f"需人工复核：{sum(1 for record in records if record['needsManualReview'])} 个。")
 
