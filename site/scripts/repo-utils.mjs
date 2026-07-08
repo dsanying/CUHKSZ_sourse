@@ -40,7 +40,18 @@ export function getRepository() {
 }
 
 export function getBranch() {
-  return process.env.GITHUB_REF_NAME || "main"
+  if (process.env.GITHUB_SHA) {
+    return process.env.GITHUB_SHA
+  }
+
+  try {
+    return execFileSync("git", ["rev-parse", "HEAD"], {
+      cwd: REPO_ROOT,
+      encoding: "utf8",
+    }).trim()
+  } catch {
+    return process.env.GITHUB_REF_NAME || "main"
+  }
 }
 
 export function getTopLevelResourceDirs() {

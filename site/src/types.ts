@@ -11,6 +11,8 @@ export type ResourceFile = {
   updatedAt: string
   rawUrl: string
   githubUrl: string
+  previewKind: "pdf" | "office" | null
+  previewUrl: string | null
 }
 
 export type Course = {

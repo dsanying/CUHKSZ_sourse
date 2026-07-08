@@ -20,6 +20,28 @@ import {
 const repository = getRepository()
 const branch = getBranch()
 const generatedAt = new Date().toISOString()
+const OFFICE_PREVIEW_EXTENSIONS = new Set(["doc", "docx", "ppt", "pptx", "xls", "xlsx"])
+
+function getPreview(rawUrl, extension) {
+  if (extension === "pdf") {
+    return {
+      previewKind: "pdf",
+      previewUrl: rawUrl,
+    }
+  }
+
+  if (OFFICE_PREVIEW_EXTENSIONS.has(extension)) {
+    return {
+      previewKind: "office",
+      previewUrl: `https://view.officeapps.live.com/op/embed.aspx?src=${encodeURIComponent(rawUrl)}`,
+    }
+  }
+
+  return {
+    previewKind: null,
+    previewUrl: null,
+  }
+}
 
 function collectFiles(courseName, currentDir, files = []) {
   for (const entry of readdirSync(currentDir)) {
@@ -44,6 +66,8 @@ function collectFiles(courseName, currentDir, files = []) {
     const extension = path.extname(entry).replace(".", "").toLowerCase() || "file"
     const parentPath = segments.slice(1, -1).join("/")
     const category = classifyResource(courseName, relativePath)
+    const rawUrl = `https://raw.githubusercontent.com/${repository}/${branch}/${encodePathForUrl(relativePath)}`
+    const preview = getPreview(rawUrl, extension)
 
     files.push({
       id: relativePath,
@@ -56,8 +80,9 @@ function collectFiles(courseName, currentDir, files = []) {
       extension,
       size: stats.size,
       updatedAt: stats.mtime.toISOString(),
-      rawUrl: `https://raw.githubusercontent.com/${repository}/${branch}/${encodePathForUrl(relativePath)}`,
+      rawUrl,
       githubUrl: `https://github.com/${repository}/blob/${branch}/${encodePathForUrl(relativePath)}`,
+      ...preview,
     })
   }
 
