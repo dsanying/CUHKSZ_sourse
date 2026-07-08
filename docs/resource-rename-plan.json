@@ -1,0 +1,1190 @@
+[
+  {
+    "course": "其它资料",
+    "category": "other",
+    "categoryLabel": "其他资料",
+    "sourcePath": "其它资料/其他资料/其它资料_2024大学生医保热点问答.pdf",
+    "targetPath": "其它资料/其他资料/其它资料_2024大学生医保热点问答.pdf",
+    "confidence": "中",
+    "changed": false
+  },
+  {
+    "course": "其它资料",
+    "category": "other",
+    "categoryLabel": "其他资料",
+    "sourcePath": "其它资料/其他资料/其它资料_学生体质健康测试评分表.pdf",
+    "targetPath": "其它资料/其他资料/其它资料_学生体质健康测试评分表.pdf",
+    "confidence": "中",
+    "changed": false
+  },
+  {
+    "course": "其它资料",
+    "category": "other",
+    "categoryLabel": "其他资料",
+    "sourcePath": "其它资料/其他资料/其它资料_港中深常见中英文对照.pdf",
+    "targetPath": "其它资料/其他资料/其它资料_港中深常见中英文对照.pdf",
+    "confidence": "中",
+    "changed": false
+  },
+  {
+    "course": "其它资料",
+    "category": "learning",
+    "categoryLabel": "学习资料",
+    "sourcePath": "其它资料/学习资料/其它资料_CNKI知网培训.ppt",
+    "targetPath": "其它资料/学习资料/其它资料_CNKI知网培训.ppt",
+    "confidence": "高",
+    "changed": false
+  },
+  {
+    "course": "ACT2111",
+    "category": "learning",
+    "categoryLabel": "学习资料",
+    "sourcePath": "ACT2111/学习资料/ACT2111_Financial_Accounting_4th_Edition.pdf",
+    "targetPath": "ACT2111/学习资料/ACT2111_Financial_Accounting_4th_Edition.pdf",
+    "confidence": "高",
+    "changed": false
+  },
+  {
+    "course": "ACT2121",
+    "category": "learning",
+    "categoryLabel": "学习资料",
+    "sourcePath": "ACT2121/学习资料/ACT2121_Managerial_Accounting_15th_Edition.pdf",
+    "targetPath": "ACT2121/学习资料/ACT2121_Managerial_Accounting_15th_Edition.pdf",
+    "confidence": "高",
+    "changed": false
+  },
+  {
+    "course": "CEC1000",
+    "category": "learning",
+    "categoryLabel": "学习资料",
+    "sourcePath": "CEC1000/学习资料/CEC1000_01_第一章知识点梳理.docx",
+    "targetPath": "CEC1000/学习资料/CEC1000_01_第一章知识点梳理.docx",
+    "confidence": "高",
+    "changed": false
+  },
+  {
+    "course": "CEC1000",
+    "category": "learning",
+    "categoryLabel": "学习资料",
+    "sourcePath": "CEC1000/学习资料/CEC1000_02_第二章知识点梳理.docx",
+    "targetPath": "CEC1000/学习资料/CEC1000_02_第二章知识点梳理.docx",
+    "confidence": "高",
+    "changed": false
+  },
+  {
+    "course": "CEC1000",
+    "category": "learning",
+    "categoryLabel": "学习资料",
+    "sourcePath": "CEC1000/学习资料/CEC1000_03_第三章知识点梳理.docx",
+    "targetPath": "CEC1000/学习资料/CEC1000_03_第三章知识点梳理.docx",
+    "confidence": "高",
+    "changed": false
+  },
+  {
+    "course": "CEC1000",
+    "category": "learning",
+    "categoryLabel": "学习资料",
+    "sourcePath": "CEC1000/学习资料/CEC1000_04_第四章知识点梳理.docx",
+    "targetPath": "CEC1000/学习资料/CEC1000_04_第四章知识点梳理.docx",
+    "confidence": "高",
+    "changed": false
+  },
+  {
+    "course": "CEC1000",
+    "category": "learning",
+    "categoryLabel": "学习资料",
+    "sourcePath": "CEC1000/学习资料/CEC1000_05_第五章知识点梳理.docx",
+    "targetPath": "CEC1000/学习资料/CEC1000_05_第五章知识点梳理.docx",
+    "confidence": "高",
+    "changed": false
+  },
+  {
+    "course": "CEC1000",
+    "category": "learning",
+    "categoryLabel": "学习资料",
+    "sourcePath": "CEC1000/学习资料/CEC1000_思想道德与法治_2023年版_高等教育出版社.pdf",
+    "targetPath": "CEC1000/学习资料/CEC1000_思想道德与法治_2023年版_高等教育出版社.pdf",
+    "confidence": "高",
+    "changed": false
+  },
+  {
+    "course": "CHM1001",
+    "category": "learning",
+    "categoryLabel": "学习资料",
+    "sourcePath": "CHM1001/学习资料/CHM1001_Chemistry_The_Central_Science_15th_Global_Edition_in_SI_Units.pdf",
+    "targetPath": "CHM1001/学习资料/CHM1001_Chemistry_The_Central_Science_15th_Global_Edition_in_SI_Units.pdf",
+    "confidence": "高",
+    "changed": false
+  },
+  {
+    "course": "CSC1001",
+    "category": "learning",
+    "categoryLabel": "学习资料",
+    "sourcePath": "CSC1001/学习资料/CSC1001_Python编程_从入门到实践.pdf",
+    "targetPath": "CSC1001/学习资料/CSC1001_Python编程_从入门到实践.pdf",
+    "confidence": "高",
+    "changed": false
+  },
+  {
+    "course": "CSC1001",
+    "category": "exam",
+    "categoryLabel": "考试资料",
+    "sourcePath": "CSC1001/考试资料/CSC1001_2019_Midterm.pdf",
+    "targetPath": "CSC1001/考试资料/CSC1001_2019_Midterm.pdf",
+    "confidence": "高",
+    "changed": false
+  },
+  {
+    "course": "CSC1001",
+    "category": "exam",
+    "categoryLabel": "考试资料",
+    "sourcePath": "CSC1001/考试资料/CSC1001_2019_Midterm_WithSolution.pdf",
+    "targetPath": "CSC1001/考试资料/CSC1001_2019_Midterm_WithSolution.pdf",
+    "confidence": "高",
+    "changed": false
+  },
+  {
+    "course": "CSC1001",
+    "category": "exam",
+    "categoryLabel": "考试资料",
+    "sourcePath": "CSC1001/考试资料/CSC1001_2020_Midterm.pdf",
+    "targetPath": "CSC1001/考试资料/CSC1001_2020_Midterm.pdf",
+    "confidence": "高",
+    "changed": false
+  },
+  {
+    "course": "CSC1001",
+    "category": "exam",
+    "categoryLabel": "考试资料",
+    "sourcePath": "CSC1001/考试资料/CSC1001_2021_Midterm.pdf",
+    "targetPath": "CSC1001/考试资料/CSC1001_2021_Midterm.pdf",
+    "confidence": "高",
+    "changed": false
+  },
+  {
+    "course": "CSC1001",
+    "category": "exam",
+    "categoryLabel": "考试资料",
+    "sourcePath": "CSC1001/考试资料/CSC1001_2021_Midterm_WithSolution.docx",
+    "targetPath": "CSC1001/考试资料/CSC1001_2021_Midterm_WithSolution.docx",
+    "confidence": "高",
+    "changed": false
+  },
+  {
+    "course": "CSC1001",
+    "category": "exam",
+    "categoryLabel": "考试资料",
+    "sourcePath": "CSC1001/考试资料/CSC1001_2022_Midterm.pdf",
+    "targetPath": "CSC1001/考试资料/CSC1001_2022_Midterm.pdf",
+    "confidence": "高",
+    "changed": false
+  },
+  {
+    "course": "CSC1001",
+    "category": "exam",
+    "categoryLabel": "考试资料",
+    "sourcePath": "CSC1001/考试资料/CSC1001_2023_Midterm_WithSolution.docx",
+    "targetPath": "CSC1001/考试资料/CSC1001_2023_Midterm_WithSolution.docx",
+    "confidence": "高",
+    "changed": false
+  },
+  {
+    "course": "CSC1002",
+    "category": "learning",
+    "categoryLabel": "学习资料",
+    "sourcePath": "CSC1002/学习资料/CSC1002_Learning_Python_5th_Edition.pdf",
+    "targetPath": "CSC1002/学习资料/CSC1002_Learning_Python_5th_Edition.pdf",
+    "confidence": "高",
+    "changed": false
+  },
+  {
+    "course": "CSC1003",
+    "category": "exam",
+    "categoryLabel": "考试资料",
+    "sourcePath": "CSC1003/考试资料/CSC1003_2022_Midterm_WithSolution.pdf",
+    "targetPath": "CSC1003/考试资料/CSC1003_2022_Midterm_WithSolution.pdf",
+    "confidence": "高",
+    "changed": false
+  },
+  {
+    "course": "CSC1003",
+    "category": "exam",
+    "categoryLabel": "考试资料",
+    "sourcePath": "CSC1003/考试资料/CSC1003_2023_Final.pdf",
+    "targetPath": "CSC1003/考试资料/CSC1003_2023_Final.pdf",
+    "confidence": "高",
+    "changed": false
+  },
+  {
+    "course": "CSC1003",
+    "category": "exam",
+    "categoryLabel": "考试资料",
+    "sourcePath": "CSC1003/考试资料/CSC1003_2023_Final_WithSolution.pdf",
+    "targetPath": "CSC1003/考试资料/CSC1003_2023_Final_WithSolution.pdf",
+    "confidence": "高",
+    "changed": false
+  },
+  {
+    "course": "CSC3001",
+    "category": "learning",
+    "categoryLabel": "学习资料",
+    "sourcePath": "CSC3001/学习资料/CSC3001_Introduction_to_algorithms_3rd_Edition.pdf",
+    "targetPath": "CSC3001/学习资料/CSC3001_Introduction_to_algorithms_3rd_Edition.pdf",
+    "confidence": "高",
+    "changed": false
+  },
+  {
+    "course": "CSC3001",
+    "category": "exam",
+    "categoryLabel": "考试资料",
+    "sourcePath": "CSC3001/考试资料/CSC3001_2021_Final.pdf",
+    "targetPath": "CSC3001/考试资料/CSC3001_2021_Final.pdf",
+    "confidence": "高",
+    "changed": false
+  },
+  {
+    "course": "CSC3001",
+    "category": "exam",
+    "categoryLabel": "考试资料",
+    "sourcePath": "CSC3001/考试资料/CSC3001_2021_Midterm.pdf",
+    "targetPath": "CSC3001/考试资料/CSC3001_2021_Midterm.pdf",
+    "confidence": "高",
+    "changed": false
+  },
+  {
+    "course": "CSC3001",
+    "category": "exam",
+    "categoryLabel": "考试资料",
+    "sourcePath": "CSC3001/考试资料/CSC3001_2022_Final.pdf",
+    "targetPath": "CSC3001/考试资料/CSC3001_2022_Final.pdf",
+    "confidence": "高",
+    "changed": false
+  },
+  {
+    "course": "CSC3001",
+    "category": "exam",
+    "categoryLabel": "考试资料",
+    "sourcePath": "CSC3001/考试资料/CSC3001_2022_Midterm.pdf",
+    "targetPath": "CSC3001/考试资料/CSC3001_2022_Midterm.pdf",
+    "confidence": "高",
+    "changed": false
+  },
+  {
+    "course": "CSC3001",
+    "category": "exam",
+    "categoryLabel": "考试资料",
+    "sourcePath": "CSC3001/考试资料/CSC3001_2022_Summer_Final.pdf",
+    "targetPath": "CSC3001/考试资料/CSC3001_2022_Summer_Final.pdf",
+    "confidence": "高",
+    "changed": false
+  },
+  {
+    "course": "CSC3001",
+    "category": "exam",
+    "categoryLabel": "考试资料",
+    "sourcePath": "CSC3001/考试资料/CSC3001_2022_Summer_Midterm.pdf",
+    "targetPath": "CSC3001/考试资料/CSC3001_2022_Summer_Midterm.pdf",
+    "confidence": "高",
+    "changed": false
+  },
+  {
+    "course": "CSC3001",
+    "category": "exam",
+    "categoryLabel": "考试资料",
+    "sourcePath": "CSC3001/考试资料/CSC3001_2023_Final.pdf",
+    "targetPath": "CSC3001/考试资料/CSC3001_2023_Final.pdf",
+    "confidence": "高",
+    "changed": false
+  },
+  {
+    "course": "CSC3001",
+    "category": "exam",
+    "categoryLabel": "考试资料",
+    "sourcePath": "CSC3001/考试资料/CSC3001_2023_Midterm.pdf",
+    "targetPath": "CSC3001/考试资料/CSC3001_2023_Midterm.pdf",
+    "confidence": "高",
+    "changed": false
+  },
+  {
+    "course": "CSC3001",
+    "category": "exam",
+    "categoryLabel": "考试资料",
+    "sourcePath": "CSC3001/考试资料/CSC3001_2023_Summer_Final.pdf",
+    "targetPath": "CSC3001/考试资料/CSC3001_2023_Summer_Final.pdf",
+    "confidence": "高",
+    "changed": false
+  },
+  {
+    "course": "CSC3001",
+    "category": "exam",
+    "categoryLabel": "考试资料",
+    "sourcePath": "CSC3001/考试资料/CSC3001_2023_Summer_Midterm.pdf",
+    "targetPath": "CSC3001/考试资料/CSC3001_2023_Summer_Midterm.pdf",
+    "confidence": "高",
+    "changed": false
+  },
+  {
+    "course": "CSC3001",
+    "category": "exam",
+    "categoryLabel": "考试资料",
+    "sourcePath": "CSC3001/考试资料/CSC3001_2024_Midterm_WithSolution.pdf",
+    "targetPath": "CSC3001/考试资料/CSC3001_2024_Midterm_WithSolution.pdf",
+    "confidence": "高",
+    "changed": false
+  },
+  {
+    "course": "CSC3100",
+    "category": "learning",
+    "categoryLabel": "学习资料",
+    "sourcePath": "CSC3100/学习资料/CSC3100_算法导论_英文第三版.pdf",
+    "targetPath": "CSC3100/学习资料/CSC3100_算法导论_英文第三版.pdf",
+    "confidence": "高",
+    "changed": false
+  },
+  {
+    "course": "CSC3100",
+    "category": "exam",
+    "categoryLabel": "考试资料",
+    "sourcePath": "CSC3100/考试资料/CSC3100_2022_Final.pdf",
+    "targetPath": "CSC3100/考试资料/CSC3100_2022_Final.pdf",
+    "confidence": "高",
+    "changed": false
+  },
+  {
+    "course": "CSC3100",
+    "category": "exam",
+    "categoryLabel": "考试资料",
+    "sourcePath": "CSC3100/考试资料/CSC3100_2023_Summer_Midterm.pdf",
+    "targetPath": "CSC3100/考试资料/CSC3100_2023_Summer_Midterm.pdf",
+    "confidence": "高",
+    "changed": false
+  },
+  {
+    "course": "DDA2001",
+    "category": "exam",
+    "categoryLabel": "考试资料",
+    "sourcePath": "DDA2001/考试资料/DDA2001_2024_Final_WithSolution.pdf",
+    "targetPath": "DDA2001/考试资料/DDA2001_2024_Final_WithSolution.pdf",
+    "confidence": "高",
+    "changed": false
+  },
+  {
+    "course": "DDA5001",
+    "category": "learning",
+    "categoryLabel": "学习资料",
+    "sourcePath": "DDA5001/学习资料/DDA5001_Deep_Learning_Foundations_and_Concepts.pdf",
+    "targetPath": "DDA5001/学习资料/DDA5001_Deep_Learning_Foundations_and_Concepts.pdf",
+    "confidence": "高",
+    "changed": false
+  },
+  {
+    "course": "DDA5001",
+    "category": "learning",
+    "categoryLabel": "学习资料",
+    "sourcePath": "DDA5001/学习资料/DDA5001_模式识别与机器学习_中文版.pdf",
+    "targetPath": "DDA5001/学习资料/DDA5001_模式识别与机器学习_中文版.pdf",
+    "confidence": "高",
+    "changed": false
+  },
+  {
+    "course": "DMS2030",
+    "category": "learning",
+    "categoryLabel": "学习资料",
+    "sourcePath": "DMS2030/学习资料/DMS2030_Operations_and_Supply_Chain_Management.pdf",
+    "targetPath": "DMS2030/学习资料/DMS2030_Operations_and_Supply_Chain_Management.pdf",
+    "confidence": "高",
+    "changed": false
+  },
+  {
+    "course": "ECO2011",
+    "category": "homework",
+    "categoryLabel": "作业习题",
+    "sourcePath": "ECO2011/作业习题/ECO2011_曼昆《经济学原理》_宏观经济学分册_第8版_笔记和课后习题1详解.pdf",
+    "targetPath": "ECO2011/作业习题/ECO2011_曼昆《经济学原理》_宏观经济学分册_第8版_笔记和课后习题1详解.pdf",
+    "confidence": "高",
+    "changed": false
+  },
+  {
+    "course": "ECO2011",
+    "category": "homework",
+    "categoryLabel": "作业习题",
+    "sourcePath": "ECO2011/作业习题/ECO2011_曼昆《经济学原理》_微观经济学分册_第8版_笔记和课后习题2详解.pdf",
+    "targetPath": "ECO2011/作业习题/ECO2011_曼昆《经济学原理》_微观经济学分册_第8版_笔记和课后习题2详解.pdf",
+    "confidence": "高",
+    "changed": false
+  },
+  {
+    "course": "ECO2011",
+    "category": "learning",
+    "categoryLabel": "学习资料",
+    "sourcePath": "ECO2011/学习资料/ECO2011_Essentials_of_Economics_7th_Edition.pdf",
+    "targetPath": "ECO2011/学习资料/ECO2011_Essentials_of_Economics_7th_Edition.pdf",
+    "confidence": "高",
+    "changed": false
+  },
+  {
+    "course": "ECO2011",
+    "category": "learning",
+    "categoryLabel": "学习资料",
+    "sourcePath": "ECO2011/学习资料/ECO2011_Microeconomics_8th_Edition.pdf",
+    "targetPath": "ECO2011/学习资料/ECO2011_Microeconomics_8th_Edition.pdf",
+    "confidence": "高",
+    "changed": false
+  },
+  {
+    "course": "ECO2011",
+    "category": "learning",
+    "categoryLabel": "学习资料",
+    "sourcePath": "ECO2011/学习资料/ECO2011_Microeconomics_8th_Edition_Pindyck_Rubinfeld.pdf",
+    "targetPath": "ECO2011/学习资料/ECO2011_Microeconomics_8th_Edition_Pindyck_Rubinfeld.pdf",
+    "confidence": "高",
+    "changed": false
+  },
+  {
+    "course": "ECO2011",
+    "category": "learning",
+    "categoryLabel": "学习资料",
+    "sourcePath": "ECO2011/学习资料/ECO2011_Microeconomics_9th_Edition_Pindyck_Rubinfeld.pdf",
+    "targetPath": "ECO2011/学习资料/ECO2011_Microeconomics_9th_Edition_Pindyck_Rubinfeld.pdf",
+    "confidence": "高",
+    "changed": false
+  },
+  {
+    "course": "ECO2011",
+    "category": "learning",
+    "categoryLabel": "学习资料",
+    "sourcePath": "ECO2011/学习资料/ECO2011_Microeconomics_9th_Global_Edition_Pindyck_Rubinfeld.pdf",
+    "targetPath": "ECO2011/学习资料/ECO2011_Microeconomics_9th_Global_Edition_Pindyck_Rubinfeld.pdf",
+    "confidence": "高",
+    "changed": false
+  },
+  {
+    "course": "ECO2011",
+    "category": "learning",
+    "categoryLabel": "学习资料",
+    "sourcePath": "ECO2011/学习资料/ECO2011_Modern_Principles_of_Economics_Tyler_Cowen_and_Alex_Tabarrok.pdf",
+    "targetPath": "ECO2011/学习资料/ECO2011_Modern_Principles_of_Economics_Tyler_Cowen_and_Alex_Tabarrok.pdf",
+    "confidence": "高",
+    "changed": false
+  },
+  {
+    "course": "ECO2011",
+    "category": "learning",
+    "categoryLabel": "学习资料",
+    "sourcePath": "ECO2011/学习资料/ECO2011_Principles_of_Economics_7th_Edition.pdf",
+    "targetPath": "ECO2011/学习资料/ECO2011_Principles_of_Economics_7th_Edition.pdf",
+    "confidence": "高",
+    "changed": false
+  },
+  {
+    "course": "ECO2011",
+    "category": "learning",
+    "categoryLabel": "学习资料",
+    "sourcePath": "ECO2011/学习资料/ECO2011_Principles_of_Economics_7th_Mankiw_中译版.pdf",
+    "targetPath": "ECO2011/学习资料/ECO2011_Principles_of_Economics_7th_Mankiw_中译版.pdf",
+    "confidence": "高",
+    "changed": false
+  },
+  {
+    "course": "ECO2011",
+    "category": "learning",
+    "categoryLabel": "学习资料",
+    "sourcePath": "ECO2011/学习资料/ECO2011_Principles_of_Economics_8th_Edition.pdf",
+    "targetPath": "ECO2011/学习资料/ECO2011_Principles_of_Economics_8th_Edition.pdf",
+    "confidence": "高",
+    "changed": false
+  },
+  {
+    "course": "ECO2011",
+    "category": "learning",
+    "categoryLabel": "学习资料",
+    "sourcePath": "ECO2011/学习资料/ECO2011_曼昆《经济学原理》导读.pdf",
+    "targetPath": "ECO2011/学习资料/ECO2011_曼昆《经济学原理》导读.pdf",
+    "confidence": "高",
+    "changed": false
+  },
+  {
+    "course": "ECO2011",
+    "category": "exam",
+    "categoryLabel": "考试资料",
+    "sourcePath": "ECO2011/考试资料/ECO2011_曼昆《经济学原理》_宏观经济学分册_第8版_配套题库2_考研真题精选＋章节题库.pdf",
+    "targetPath": "ECO2011/考试资料/ECO2011_曼昆《经济学原理》_宏观经济学分册_第8版_配套题库2_考研真题精选＋章节题库.pdf",
+    "confidence": "高",
+    "changed": false
+  },
+  {
+    "course": "ECO2011",
+    "category": "exam",
+    "categoryLabel": "考试资料",
+    "sourcePath": "ECO2011/考试资料/ECO2011_曼昆《经济学原理》_微观经济学分册_第8版_配套题库1_考研真题精选＋章节题库.pdf",
+    "targetPath": "ECO2011/考试资料/ECO2011_曼昆《经济学原理》_微观经济学分册_第8版_配套题库1_考研真题精选＋章节题库.pdf",
+    "confidence": "高",
+    "changed": false
+  },
+  {
+    "course": "ECO2021",
+    "category": "learning",
+    "categoryLabel": "学习资料",
+    "sourcePath": "ECO2021/学习资料/ECO2021_Essentials_of_Modern_Business_Statistics.pdf",
+    "targetPath": "ECO2021/学习资料/ECO2021_Essentials_of_Modern_Business_Statistics.pdf",
+    "confidence": "高",
+    "changed": false
+  },
+  {
+    "course": "ECO2021",
+    "category": "learning",
+    "categoryLabel": "学习资料",
+    "sourcePath": "ECO2021/学习资料/ECO2021_宏观经济学_第5版_罗伯特_巴罗_中文版.pdf",
+    "targetPath": "ECO2021/学习资料/ECO2021_宏观经济学_第5版_罗伯特_巴罗_中文版.pdf",
+    "confidence": "高",
+    "changed": false
+  },
+  {
+    "course": "ECO2021",
+    "category": "learning",
+    "categoryLabel": "学习资料",
+    "sourcePath": "ECO2021/学习资料/ECO2021_经济学原理_第7版_宏观经济学分册.pdf",
+    "targetPath": "ECO2021/学习资料/ECO2021_经济学原理_第7版_宏观经济学分册.pdf",
+    "confidence": "高",
+    "changed": false
+  },
+  {
+    "course": "ECO3011",
+    "category": "learning",
+    "categoryLabel": "学习资料",
+    "sourcePath": "ECO3011/学习资料/ECO3011_Intermediate_Microeconomics_A_Modern_Approach_8th_Edition.pdf",
+    "targetPath": "ECO3011/学习资料/ECO3011_Intermediate_Microeconomics_A_Modern_Approach_8th_Edition.pdf",
+    "confidence": "高",
+    "changed": false
+  },
+  {
+    "course": "ECO3021",
+    "category": "learning",
+    "categoryLabel": "学习资料",
+    "sourcePath": "ECO3021/学习资料/ECO3021_Macroeconomics_3rd_Edition.pdf",
+    "targetPath": "ECO3021/学习资料/ECO3021_Macroeconomics_3rd_Edition.pdf",
+    "confidence": "高",
+    "changed": false
+  },
+  {
+    "course": "ECO3121",
+    "category": "learning",
+    "categoryLabel": "学习资料",
+    "sourcePath": "ECO3121/学习资料/ECO3121_Introductory_Econometrics_A_Modern_Approach_6th_Edition.pdf",
+    "targetPath": "ECO3121/学习资料/ECO3121_Introductory_Econometrics_A_Modern_Approach_6th_Edition.pdf",
+    "confidence": "高",
+    "changed": false
+  },
+  {
+    "course": "ECO3121",
+    "category": "exam",
+    "categoryLabel": "考试资料",
+    "sourcePath": "ECO3121/考试资料/ECO3121_2021_Final_WithSolution.pdf",
+    "targetPath": "ECO3121/考试资料/ECO3121_2021_Final_WithSolution.pdf",
+    "confidence": "高",
+    "changed": false
+  },
+  {
+    "course": "ECO3121",
+    "category": "exam",
+    "categoryLabel": "考试资料",
+    "sourcePath": "ECO3121/考试资料/ECO3121_2021_Midterm_WithSolution.pdf",
+    "targetPath": "ECO3121/考试资料/ECO3121_2021_Midterm_WithSolution.pdf",
+    "confidence": "高",
+    "changed": false
+  },
+  {
+    "course": "FIN2010",
+    "category": "learning",
+    "categoryLabel": "学习资料",
+    "sourcePath": "FIN2010/学习资料/FIN2010_Fundamentals_of_Corporate_Finance_10th_Edition.pdf",
+    "targetPath": "FIN2010/学习资料/FIN2010_Fundamentals_of_Corporate_Finance_10th_Edition.pdf",
+    "confidence": "高",
+    "changed": false
+  },
+  {
+    "course": "FIN2010",
+    "category": "learning",
+    "categoryLabel": "学习资料",
+    "sourcePath": "FIN2010/学习资料/FIN2010_Fundamentals_of_Corporate_Finance_10th_Edition_2.pdf",
+    "targetPath": "FIN2010/学习资料/FIN2010_Fundamentals_of_Corporate_Finance_10th_Edition_2.pdf",
+    "confidence": "高",
+    "changed": false
+  },
+  {
+    "course": "FIN2010",
+    "category": "learning",
+    "categoryLabel": "学习资料",
+    "sourcePath": "FIN2010/学习资料/FIN2010_James_C_Van_Horne_John_M_Wachowicz_Fundamentals_of_Financial_Management_13th_Edition_Pearson_Education_Limited_2008.pdf",
+    "targetPath": "FIN2010/学习资料/FIN2010_James_C_Van_Horne_John_M_Wachowicz_Fundamentals_of_Financial_Management_13th_Edition_Pearson_Education_Limited_2008.pdf",
+    "confidence": "高",
+    "changed": false
+  },
+  {
+    "course": "FIN2010",
+    "category": "learning",
+    "categoryLabel": "学习资料",
+    "sourcePath": "FIN2010/学习资料/FIN2010_财务管理基础_第13版_中文版.pdf",
+    "targetPath": "FIN2010/学习资料/FIN2010_财务管理基础_第13版_中文版.pdf",
+    "confidence": "高",
+    "changed": false
+  },
+  {
+    "course": "FIN2010",
+    "category": "exam",
+    "categoryLabel": "考试资料",
+    "sourcePath": "FIN2010/考试资料/FIN2010_期中复习资料.pdf",
+    "targetPath": "FIN2010/考试资料/FIN2010_期中复习资料.pdf",
+    "confidence": "高",
+    "changed": false
+  },
+  {
+    "course": "FIN2020",
+    "category": "learning",
+    "categoryLabel": "学习资料",
+    "sourcePath": "FIN2020/学习资料/FIN2020_Intermediate_Financial_Theory_3rd_Edition_by_Jean_Pierre_Danthine.pdf",
+    "targetPath": "FIN2020/学习资料/FIN2020_Intermediate_Financial_Theory_3rd_Edition_by_Jean_Pierre_Danthine.pdf",
+    "confidence": "高",
+    "changed": false
+  },
+  {
+    "course": "GFH1000",
+    "category": "learning",
+    "categoryLabel": "学习资料",
+    "sourcePath": "GFH1000/学习资料/GFH1000_《与人文对话》中译版2024_部分.pdf",
+    "targetPath": "GFH1000/学习资料/GFH1000_《与人文对话》中译版2024_部分.pdf",
+    "confidence": "高",
+    "changed": false
+  },
+  {
+    "course": "GFN1000",
+    "category": "learning",
+    "categoryLabel": "学习资料",
+    "sourcePath": "GFN1000/学习资料/GFN1000_In_Dialogue_with_Nature.pdf",
+    "targetPath": "GFN1000/学习资料/GFN1000_In_Dialogue_with_Nature.pdf",
+    "confidence": "高",
+    "changed": false
+  },
+  {
+    "course": "GFN1000",
+    "category": "learning",
+    "categoryLabel": "学习资料",
+    "sourcePath": "GFN1000/学习资料/GFN1000_《与自然对话》中译版2023.pdf",
+    "targetPath": "GFN1000/学习资料/GFN1000_《与自然对话》中译版2023.pdf",
+    "confidence": "高",
+    "changed": false
+  },
+  {
+    "course": "HSS1005",
+    "category": "learning",
+    "categoryLabel": "学习资料",
+    "sourcePath": "HSS1005/学习资料/HSS1005_Psychology_Gleitman_8th_Edition.pdf",
+    "targetPath": "HSS1005/学习资料/HSS1005_Psychology_Gleitman_8th_Edition.pdf",
+    "confidence": "高",
+    "changed": false
+  },
+  {
+    "course": "HSS1009",
+    "category": "learning",
+    "categoryLabel": "学习资料",
+    "sourcePath": "HSS1009/学习资料/HSS1009_Understanding_Statistics_for_the_Social_Sciences_with_IBM_SPSS.pdf",
+    "targetPath": "HSS1009/学习资料/HSS1009_Understanding_Statistics_for_the_Social_Sciences_with_IBM_SPSS.pdf",
+    "confidence": "高",
+    "changed": false
+  },
+  {
+    "course": "MAT1001&1002",
+    "category": "homework",
+    "categoryLabel": "作业习题",
+    "sourcePath": "MAT1001&1002/作业习题/MAT1001&1002_托马斯微积分_13全球版_习题答案.zip",
+    "targetPath": "MAT1001&1002/作业习题/MAT1001&1002_托马斯微积分_13全球版_习题答案.zip",
+    "confidence": "高",
+    "changed": false
+  },
+  {
+    "course": "MAT1001&1002",
+    "category": "homework",
+    "categoryLabel": "作业习题",
+    "sourcePath": "MAT1001&1002/作业习题/MAT1001&1002_高等数学_习题全解指南_第7版_上册.pdf",
+    "targetPath": "MAT1001&1002/作业习题/MAT1001&1002_高等数学_习题全解指南_第7版_上册.pdf",
+    "confidence": "高",
+    "changed": false
+  },
+  {
+    "course": "MAT1001&1002",
+    "category": "homework",
+    "categoryLabel": "作业习题",
+    "sourcePath": "MAT1001&1002/作业习题/MAT1001&1002_高等数学_习题全解指南_第7版_下册.pdf",
+    "targetPath": "MAT1001&1002/作业习题/MAT1001&1002_高等数学_习题全解指南_第7版_下册.pdf",
+    "confidence": "高",
+    "changed": false
+  },
+  {
+    "course": "MAT1001&1002",
+    "category": "learning",
+    "categoryLabel": "学习资料",
+    "sourcePath": "MAT1001&1002/学习资料/MAT1001&1002_Introduction_to_Real_Analysis_4th_by_Robert_G_Bartle.pdf",
+    "targetPath": "MAT1001&1002/学习资料/MAT1001&1002_Introduction_to_Real_Analysis_4th_by_Robert_G_Bartle.pdf",
+    "confidence": "高",
+    "changed": false
+  },
+  {
+    "course": "MAT1001&1002",
+    "category": "learning",
+    "categoryLabel": "学习资料",
+    "sourcePath": "MAT1001&1002/学习资料/MAT1001&1002_Thomas_Calculus_SI_Units.pdf",
+    "targetPath": "MAT1001&1002/学习资料/MAT1001&1002_Thomas_Calculus_SI_Units.pdf",
+    "confidence": "高",
+    "changed": false
+  },
+  {
+    "course": "MAT1001&1002",
+    "category": "learning",
+    "categoryLabel": "学习资料",
+    "sourcePath": "MAT1001&1002/学习资料/MAT1001&1002_高等数学_第7版_上册_同济大学.pdf",
+    "targetPath": "MAT1001&1002/学习资料/MAT1001&1002_高等数学_第7版_上册_同济大学.pdf",
+    "confidence": "高",
+    "changed": false
+  },
+  {
+    "course": "MAT1001&1002",
+    "category": "exam",
+    "categoryLabel": "考试资料",
+    "sourcePath": "MAT1001&1002/考试资料/MAT1001_2022_Final.pdf",
+    "targetPath": "MAT1001&1002/考试资料/MAT1001_2022_Final.pdf",
+    "confidence": "高",
+    "changed": false
+  },
+  {
+    "course": "MAT1001&1002",
+    "category": "exam",
+    "categoryLabel": "考试资料",
+    "sourcePath": "MAT1001&1002/考试资料/MAT1001_2022_Midterm.pdf",
+    "targetPath": "MAT1001&1002/考试资料/MAT1001_2022_Midterm.pdf",
+    "confidence": "高",
+    "changed": false
+  },
+  {
+    "course": "MAT1001&1002",
+    "category": "exam",
+    "categoryLabel": "考试资料",
+    "sourcePath": "MAT1001&1002/考试资料/MAT1001_2022_Midterm_WithSolution.pdf",
+    "targetPath": "MAT1001&1002/考试资料/MAT1001_2022_Midterm_WithSolution.pdf",
+    "confidence": "高",
+    "changed": false
+  },
+  {
+    "course": "MAT1001&1002",
+    "category": "exam",
+    "categoryLabel": "考试资料",
+    "sourcePath": "MAT1001&1002/考试资料/MAT1001_2023_Midterm_WithSolution.pdf",
+    "targetPath": "MAT1001&1002/考试资料/MAT1001_2023_Midterm_WithSolution.pdf",
+    "confidence": "高",
+    "changed": false
+  },
+  {
+    "course": "MAT1001&1002",
+    "category": "exam",
+    "categoryLabel": "考试资料",
+    "sourcePath": "MAT1001&1002/考试资料/MAT1002_2023_Final.pdf",
+    "targetPath": "MAT1001&1002/考试资料/MAT1002_2023_Final.pdf",
+    "confidence": "高",
+    "changed": false
+  },
+  {
+    "course": "MAT1001&1002",
+    "category": "exam",
+    "categoryLabel": "考试资料",
+    "sourcePath": "MAT1001&1002/考试资料/MAT1002_2023_Midterm.pdf",
+    "targetPath": "MAT1001&1002/考试资料/MAT1002_2023_Midterm.pdf",
+    "confidence": "高",
+    "changed": false
+  },
+  {
+    "course": "MAT1001&1002",
+    "category": "exam",
+    "categoryLabel": "考试资料",
+    "sourcePath": "MAT1001&1002/考试资料/MAT1002_2023_Midterm_WithSolution.pdf",
+    "targetPath": "MAT1001&1002/考试资料/MAT1002_2023_Midterm_WithSolution.pdf",
+    "confidence": "高",
+    "changed": false
+  },
+  {
+    "course": "MAT1001&1002",
+    "category": "exam",
+    "categoryLabel": "考试资料",
+    "sourcePath": "MAT1001&1002/考试资料/MAT1002_2024_Midterm.pdf",
+    "targetPath": "MAT1001&1002/考试资料/MAT1002_2024_Midterm.pdf",
+    "confidence": "高",
+    "changed": false
+  },
+  {
+    "course": "MAT1001&1002",
+    "category": "exam",
+    "categoryLabel": "考试资料",
+    "sourcePath": "MAT1001&1002/考试资料/MAT1002_2024_Midterm_WithSolution.pdf",
+    "targetPath": "MAT1001&1002/考试资料/MAT1002_2024_Midterm_WithSolution.pdf",
+    "confidence": "高",
+    "changed": false
+  },
+  {
+    "course": "MAT1010",
+    "category": "learning",
+    "categoryLabel": "学习资料",
+    "sourcePath": "MAT1010/学习资料/MAT1010_Essential_Mathematics_for_Economic_Analysis_4th_Edition.pdf",
+    "targetPath": "MAT1010/学习资料/MAT1010_Essential_Mathematics_for_Economic_Analysis_4th_Edition.pdf",
+    "confidence": "高",
+    "changed": false
+  },
+  {
+    "course": "MAT1010",
+    "category": "learning",
+    "categoryLabel": "学习资料",
+    "sourcePath": "MAT1010/学习资料/MAT1010_Essential_Mathematics_for_Economic_Analysis_5th_Edition.pdf",
+    "targetPath": "MAT1010/学习资料/MAT1010_Essential_Mathematics_for_Economic_Analysis_5th_Edition.pdf",
+    "confidence": "高",
+    "changed": false
+  },
+  {
+    "course": "MAT1010",
+    "category": "learning",
+    "categoryLabel": "学习资料",
+    "sourcePath": "MAT1010/学习资料/MAT1010_高等数学_第7版_上册_同济大学.pdf",
+    "targetPath": "MAT1010/学习资料/MAT1010_高等数学_第7版_上册_同济大学.pdf",
+    "confidence": "高",
+    "changed": false
+  },
+  {
+    "course": "MAT2040",
+    "category": "learning",
+    "categoryLabel": "学习资料",
+    "sourcePath": "MAT2040/学习资料/MAT2040_Linear_Algebra_with_Applications_9th_Edition.pdf",
+    "targetPath": "MAT2040/学习资料/MAT2040_Linear_Algebra_with_Applications_9th_Edition.pdf",
+    "confidence": "高",
+    "changed": false
+  },
+  {
+    "course": "MAT2040",
+    "category": "learning",
+    "categoryLabel": "学习资料",
+    "sourcePath": "MAT2040/学习资料/MAT2040_线代第九版.pdf",
+    "targetPath": "MAT2040/学习资料/MAT2040_线代第九版.pdf",
+    "confidence": "高",
+    "changed": false
+  },
+  {
+    "course": "MAT2041",
+    "category": "exam",
+    "categoryLabel": "考试资料",
+    "sourcePath": "MAT2041/考试资料/MAT2041_2023_Final_WithSolution.pdf",
+    "targetPath": "MAT2041/考试资料/MAT2041_2023_Final_WithSolution.pdf",
+    "confidence": "高",
+    "changed": false
+  },
+  {
+    "course": "MAT2041",
+    "category": "exam",
+    "categoryLabel": "考试资料",
+    "sourcePath": "MAT2041/考试资料/MAT2041_2023_Midterm_WithSolution.pdf",
+    "targetPath": "MAT2041/考试资料/MAT2041_2023_Midterm_WithSolution.pdf",
+    "confidence": "高",
+    "changed": false
+  },
+  {
+    "course": "MAT2041",
+    "category": "exam",
+    "categoryLabel": "考试资料",
+    "sourcePath": "MAT2041/考试资料/MAT2041_2023_Sample_Final.pdf",
+    "targetPath": "MAT2041/考试资料/MAT2041_2023_Sample_Final.pdf",
+    "confidence": "高",
+    "changed": false
+  },
+  {
+    "course": "MAT2041",
+    "category": "exam",
+    "categoryLabel": "考试资料",
+    "sourcePath": "MAT2041/考试资料/MAT2041_2023_Sample_Midterm.pdf",
+    "targetPath": "MAT2041/考试资料/MAT2041_2023_Sample_Midterm.pdf",
+    "confidence": "高",
+    "changed": false
+  },
+  {
+    "course": "MAT3007",
+    "category": "learning",
+    "categoryLabel": "学习资料",
+    "sourcePath": "MAT3007/学习资料/MAT3007_convex_optimization.pdf",
+    "targetPath": "MAT3007/学习资料/MAT3007_convex_optimization.pdf",
+    "confidence": "高",
+    "changed": false
+  },
+  {
+    "course": "MAT3007",
+    "category": "exam",
+    "categoryLabel": "考试资料",
+    "sourcePath": "MAT3007/考试资料/MAT3007_CheatingPaper.pdf",
+    "targetPath": "MAT3007/考试资料/MAT3007_CheatingPaper.pdf",
+    "confidence": "高",
+    "changed": false
+  },
+  {
+    "course": "MGT2020",
+    "category": "learning",
+    "categoryLabel": "学习资料",
+    "sourcePath": "MGT2020/学习资料/MGT2020_Stephen_P_Robbins_Mary_A_Coulter_Management_2017_Pearson.pdf",
+    "targetPath": "MGT2020/学习资料/MGT2020_Stephen_P_Robbins_Mary_A_Coulter_Management_2017_Pearson.pdf",
+    "confidence": "高",
+    "changed": false
+  },
+  {
+    "course": "MGT3010",
+    "category": "learning",
+    "categoryLabel": "学习资料",
+    "sourcePath": "MGT3010/学习资料/MGT3010_Global_Business_4th_Edition_by_Mike_W_Peng.pdf",
+    "targetPath": "MGT3010/学习资料/MGT3010_Global_Business_4th_Edition_by_Mike_W_Peng.pdf",
+    "confidence": "高",
+    "changed": false
+  },
+  {
+    "course": "MGT3010",
+    "category": "learning",
+    "categoryLabel": "学习资料",
+    "sourcePath": "MGT3010/学习资料/MGT3010_International_Business_7e.pdf",
+    "targetPath": "MGT3010/学习资料/MGT3010_International_Business_7e.pdf",
+    "confidence": "高",
+    "changed": false
+  },
+  {
+    "course": "MGT3250",
+    "category": "learning",
+    "categoryLabel": "学习资料",
+    "sourcePath": "MGT3250/学习资料/MGT3250_McShane&Von_Glinow_2021_OB_9e.pdf",
+    "targetPath": "MGT3250/学习资料/MGT3250_McShane&Von_Glinow_2021_OB_9e.pdf",
+    "confidence": "高",
+    "changed": false
+  },
+  {
+    "course": "MKT2010",
+    "category": "learning",
+    "categoryLabel": "学习资料",
+    "sourcePath": "MKT2010/学习资料/MKT2010_Principles_of_Marketing.pdf",
+    "targetPath": "MKT2010/学习资料/MKT2010_Principles_of_Marketing.pdf",
+    "confidence": "高",
+    "changed": false
+  },
+  {
+    "course": "MKT3020",
+    "category": "learning",
+    "categoryLabel": "学习资料",
+    "sourcePath": "MKT3020/学习资料/MKT3020_Michael_R_Solomon_Consumer_Behavior_Buying_Having_and_Being_Pearson_2019.pdf",
+    "targetPath": "MKT3020/学习资料/MKT3020_Michael_R_Solomon_Consumer_Behavior_Buying_Having_and_Being_Pearson_2019.pdf",
+    "confidence": "高",
+    "changed": false
+  },
+  {
+    "course": "MPC",
+    "category": "learning",
+    "categoryLabel": "学习资料",
+    "sourcePath": "MPC/学习资料/MPC_Precalculus_7th_Edition.pdf",
+    "targetPath": "MPC/学习资料/MPC_Precalculus_7th_Edition.pdf",
+    "confidence": "高",
+    "changed": false
+  },
+  {
+    "course": "PED",
+    "category": "other",
+    "categoryLabel": "其他资料",
+    "sourcePath": "PED/其他资料/PED_篮球.pdf",
+    "targetPath": "PED/其他资料/PED_篮球.pdf",
+    "confidence": "中",
+    "changed": false
+  },
+  {
+    "course": "PED",
+    "category": "other",
+    "categoryLabel": "其他资料",
+    "sourcePath": "PED/其他资料/PED_羽毛球.pdf",
+    "targetPath": "PED/其他资料/PED_羽毛球.pdf",
+    "confidence": "中",
+    "changed": false
+  },
+  {
+    "course": "PED",
+    "category": "other",
+    "categoryLabel": "其他资料",
+    "sourcePath": "PED/其他资料/PED_自由泳.docx",
+    "targetPath": "PED/其他资料/PED_自由泳.docx",
+    "confidence": "中",
+    "changed": false
+  },
+  {
+    "course": "PED",
+    "category": "other",
+    "categoryLabel": "其他资料",
+    "sourcePath": "PED/其他资料/PED_蛙泳.docx",
+    "targetPath": "PED/其他资料/PED_蛙泳.docx",
+    "confidence": "中",
+    "changed": false
+  },
+  {
+    "course": "PED",
+    "category": "learning",
+    "categoryLabel": "学习资料",
+    "sourcePath": "PED/学习资料/PED_2023_Outline.pdf",
+    "targetPath": "PED/学习资料/PED_2023_Outline.pdf",
+    "confidence": "高",
+    "changed": false
+  },
+  {
+    "course": "PHY1001",
+    "category": "exam",
+    "categoryLabel": "考试资料",
+    "sourcePath": "PHY1001/考试资料/PHY1001_2022_Final.pdf",
+    "targetPath": "PHY1001/考试资料/PHY1001_2022_Final.pdf",
+    "confidence": "高",
+    "changed": false
+  },
+  {
+    "course": "PHY1001",
+    "category": "exam",
+    "categoryLabel": "考试资料",
+    "sourcePath": "PHY1001/考试资料/PHY1001_2022_Final_WithSolution.pdf",
+    "targetPath": "PHY1001/考试资料/PHY1001_2022_Final_WithSolution.pdf",
+    "confidence": "高",
+    "changed": false
+  },
+  {
+    "course": "PHY1001",
+    "category": "exam",
+    "categoryLabel": "考试资料",
+    "sourcePath": "PHY1001/考试资料/PHY1001_2023_Final.pdf",
+    "targetPath": "PHY1001/考试资料/PHY1001_2023_Final.pdf",
+    "confidence": "高",
+    "changed": false
+  },
+  {
+    "course": "PHY1001",
+    "category": "exam",
+    "categoryLabel": "考试资料",
+    "sourcePath": "PHY1001/考试资料/PHY1001_2023_Final_WithSolution.pdf",
+    "targetPath": "PHY1001/考试资料/PHY1001_2023_Final_WithSolution.pdf",
+    "confidence": "高",
+    "changed": false
+  },
+  {
+    "course": "PSY1010",
+    "category": "learning",
+    "categoryLabel": "学习资料",
+    "sourcePath": "PSY1010/学习资料/PSY1010_Dennis_Coon_John_O_Mitterer_Introduction_to_Psychology_Gateways_to_Mind_and_Behavior_Wadsworth_Cengage_Learning_2012.pdf",
+    "targetPath": "PSY1010/学习资料/PSY1010_Dennis_Coon_John_O_Mitterer_Introduction_to_Psychology_Gateways_to_Mind_and_Behavior_Wadsworth_Cengage_Learning_2012.pdf",
+    "confidence": "高",
+    "changed": false
+  },
+  {
+    "course": "PSY1020",
+    "category": "learning",
+    "categoryLabel": "学习资料",
+    "sourcePath": "PSY1020/学习资料/PSY1020_Statistical_methods_for_psychology.pdf",
+    "targetPath": "PSY1020/学习资料/PSY1020_Statistical_methods_for_psychology.pdf",
+    "confidence": "高",
+    "changed": false
+  },
+  {
+    "course": "PSY2020",
+    "category": "learning",
+    "categoryLabel": "学习资料",
+    "sourcePath": "PSY2020/学习资料/PSY2020_Robert_J_Sternberg_and_Karin_Sternberg_Cognitive_Psychology_6th_Edition_Wadsworth_Publishing_2011.pdf",
+    "targetPath": "PSY2020/学习资料/PSY2020_Robert_J_Sternberg_and_Karin_Sternberg_Cognitive_Psychology_6th_Edition_Wadsworth_Publishing_2011.pdf",
+    "confidence": "高",
+    "changed": false
+  },
+  {
+    "course": "PSY2030",
+    "category": "learning",
+    "categoryLabel": "学习资料",
+    "sourcePath": "PSY2030/学习资料/PSY2030_Essentials_of_Life_Span_Development_2nd_Edition.pdf",
+    "targetPath": "PSY2030/学习资料/PSY2030_Essentials_of_Life_Span_Development_2nd_Edition.pdf",
+    "confidence": "高",
+    "changed": false
+  },
+  {
+    "course": "STA2001",
+    "category": "homework",
+    "categoryLabel": "作业习题",
+    "sourcePath": "STA2001/作业习题/STA2001_概率论与数理统计习题全解指南_浙大第4版_浙江大学_盛骤_谢式千_潘承毅.pdf",
+    "targetPath": "STA2001/作业习题/STA2001_概率论与数理统计习题全解指南_浙大第4版_浙江大学_盛骤_谢式千_潘承毅.pdf",
+    "confidence": "高",
+    "changed": false
+  },
+  {
+    "course": "STA2001",
+    "category": "learning",
+    "categoryLabel": "学习资料",
+    "sourcePath": "STA2001/学习资料/STA2001_Probability_and_Statistical_Inference_9th_Edition.pdf",
+    "targetPath": "STA2001/学习资料/STA2001_Probability_and_Statistical_Inference_9th_Edition.pdf",
+    "confidence": "高",
+    "changed": false
+  },
+  {
+    "course": "STA2001",
+    "category": "exam",
+    "categoryLabel": "考试资料",
+    "sourcePath": "STA2001/考试资料/STA2001_2017_Final_WithSolution.pdf",
+    "targetPath": "STA2001/考试资料/STA2001_2017_Final_WithSolution.pdf",
+    "confidence": "高",
+    "changed": false
+  },
+  {
+    "course": "STA2001",
+    "category": "exam",
+    "categoryLabel": "考试资料",
+    "sourcePath": "STA2001/考试资料/STA2001_2023_Summer_Sample_Final.pdf",
+    "targetPath": "STA2001/考试资料/STA2001_2023_Summer_Sample_Final.pdf",
+    "confidence": "高",
+    "changed": false
+  },
+  {
+    "course": "STA2001",
+    "category": "exam",
+    "categoryLabel": "考试资料",
+    "sourcePath": "STA2001/考试资料/STA2001_2023_Summer_Sample_Midterm_WithSolution.pdf",
+    "targetPath": "STA2001/考试资料/STA2001_2023_Summer_Sample_Midterm_WithSolution.pdf",
+    "confidence": "高",
+    "changed": false
+  },
+  {
+    "course": "STA2001",
+    "category": "exam",
+    "categoryLabel": "考试资料",
+    "sourcePath": "STA2001/考试资料/STA2001_2024_Midterm_WithSolution.pdf",
+    "targetPath": "STA2001/考试资料/STA2001_2024_Midterm_WithSolution.pdf",
+    "confidence": "高",
+    "changed": false
+  },
+  {
+    "course": "STA2002",
+    "category": "exam",
+    "categoryLabel": "考试资料",
+    "sourcePath": "STA2002/考试资料/STA2002_2022_Summer_Final.pdf",
+    "targetPath": "STA2002/考试资料/STA2002_2022_Summer_Final.pdf",
+    "confidence": "高",
+    "changed": false
+  },
+  {
+    "course": "STA2002",
+    "category": "exam",
+    "categoryLabel": "考试资料",
+    "sourcePath": "STA2002/考试资料/STA2002_Final_WithSolution.pdf",
+    "targetPath": "STA2002/考试资料/STA2002_Final_WithSolution.pdf",
+    "confidence": "高",
+    "changed": false
+  },
+  {
+    "course": "TRA1010",
+    "category": "learning",
+    "categoryLabel": "学习资料",
+    "sourcePath": "TRA1010/学习资料/TRA1010_Introducing_Translation_Studies_Jeremy_Munday_Chapter1_Chapter2.pdf",
+    "targetPath": "TRA1010/学习资料/TRA1010_Introducing_Translation_Studies_Jeremy_Munday_Chapter1_Chapter2.pdf",
+    "confidence": "高",
+    "changed": false
+  }
+]

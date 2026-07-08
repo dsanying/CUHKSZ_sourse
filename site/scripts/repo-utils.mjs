@@ -10,6 +10,7 @@ const EXCLUDED_TOP_LEVEL = new Set([
   ".git",
   ".github",
   ".superpowers",
+  "docs",
   "node_modules",
   "site",
 ])

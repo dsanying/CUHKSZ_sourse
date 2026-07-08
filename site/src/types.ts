@@ -4,6 +4,8 @@ export type ResourceFile = {
   name: string
   path: string
   parentPath: string
+  category: string
+  categoryLabel: string
   extension: string
   size: number
   updatedAt: string
@@ -31,6 +33,11 @@ export type Manifest = {
     fileCount: number
     totalSize: number
     extensions: string[]
+    categories: Array<{
+      key: string
+      label: string
+      count: number
+    }>
   }
   courses: Course[]
 }

@@ -90,13 +90,13 @@ function matchesSearch(file: ResourceFile, search: string) {
   return text.includes(search.toLowerCase())
 }
 
-function filterCourse(course: Course, search: string, extension: string) {
+function filterCourse(course: Course, search: string, category: string) {
   const files = course.files.filter((file) => {
     const searchMatched = search.trim() ? matchesSearch(file, search.trim()) : true
-    const extensionMatched =
-      extension === "all" ? true : file.extension === extension
+    const categoryMatched =
+      category === "all" ? true : file.category === category
 
-    return searchMatched && extensionMatched
+    return searchMatched && categoryMatched
   })
 
   return { ...course, files, fileCount: files.length }
@@ -216,6 +216,11 @@ function CourseFilter({
 }
 
 function FileRow({ file }: { file: ResourceFile }) {
+  const detailPath = file.parentPath
+    .split("/")
+    .filter((segment) => segment && segment !== file.categoryLabel)
+    .join("/")
+
   return (
     <div className="grid gap-3 border-t py-3 text-sm first:border-t-0 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-center">
       <div className="flex min-w-0 gap-3">
@@ -226,8 +231,9 @@ function FileRow({ file }: { file: ResourceFile }) {
           <div className="truncate font-medium">{file.name}</div>
           <div className="mt-1 flex flex-wrap items-center gap-2 text-xs text-muted-foreground">
             <Badge variant="outline">{getExtensionLabel(file.extension)}</Badge>
+            <Badge variant="secondary">{file.categoryLabel}</Badge>
             <span>{formatBytes(file.size)}</span>
-            {file.parentPath ? <span>{file.parentPath}</span> : null}
+            {detailPath ? <span>{detailPath}</span> : null}
           </div>
         </div>
       </div>
@@ -319,7 +325,7 @@ export function App() {
   const { manifest, error } = useManifest()
   const [search, setSearch] = React.useState("")
   const [selectedCourse, setSelectedCourse] = React.useState("all")
-  const [selectedExtension, setSelectedExtension] = React.useState("all")
+  const [selectedCategory, setSelectedCategory] = React.useState("all")
 
   const visibleCourses = React.useMemo(() => {
     if (!manifest) {
@@ -330,9 +336,9 @@ export function App() {
       .filter((course) =>
         selectedCourse === "all" ? true : course.name === selectedCourse
       )
-      .map((course) => filterCourse(course, search, selectedExtension))
+      .map((course) => filterCourse(course, search, selectedCategory))
       .filter((course) => course.files.length > 0)
-  }, [manifest, search, selectedCourse, selectedExtension])
+  }, [manifest, search, selectedCourse, selectedCategory])
 
   const visibleFileCount = visibleCourses.reduce(
     (sum, course) => sum + course.files.length,
@@ -469,12 +475,12 @@ export function App() {
             </div>
 
             <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-              <Tabs value={selectedExtension} onValueChange={setSelectedExtension}>
+              <Tabs value={selectedCategory} onValueChange={setSelectedCategory}>
                 <TabsList className="flex-wrap">
-                  <TabsTrigger value="all">全部类型</TabsTrigger>
-                  {manifest.stats.extensions.map((extension) => (
-                    <TabsTrigger key={extension} value={extension}>
-                      {getExtensionLabel(extension)}
+                  <TabsTrigger value="all">全部资料</TabsTrigger>
+                  {manifest.stats.categories.map((category) => (
+                    <TabsTrigger key={category.key} value={category.key}>
+                      {category.label}
                     </TabsTrigger>
                   ))}
                 </TabsList>
@@ -498,7 +504,7 @@ export function App() {
               <CardHeader>
                 <CardTitle>没有匹配的资料</CardTitle>
                 <CardDescription>
-                  换个关键词，或清空文件类型和课程筛选后再试。
+                  换个关键词，或清空资料类型和课程筛选后再试。
                 </CardDescription>
               </CardHeader>
               <CardContent>
@@ -507,7 +513,7 @@ export function App() {
                   onClick={() => {
                     setSearch("")
                     setSelectedCourse("all")
-                    setSelectedExtension("all")
+                    setSelectedCategory("all")
                   }}
                 >
                   清空筛选
