@@ -1,0 +1,121 @@
+name: 部署资料下载页
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: github-pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    name: 构建网页并更新课程压缩包
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 检出仓库
+        uses: actions/checkout@v4
+
+      - name: 安装 Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: site/package-lock.json
+
+      - name: 安装网站依赖
+        working-directory: site
+        run: npm ci
+
+      - name: 生成资料清单
+        working-directory: site
+        run: npm run generate:manifest
+
+      - name: 计算需要更新的课程压缩包
+        id: archive-scope
+        env:
+          GH_TOKEN: ${{ github.token }}
+          BEFORE_SHA: ${{ github.event.before }}
+        run: |
+          if ! gh release view course-archives >/dev/null 2>&1; then
+            echo "mode=all" >> "$GITHUB_OUTPUT"
+            echo "filter=" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ] || [ -z "$BEFORE_SHA" ] || [ "$BEFORE_SHA" = "0000000000000000000000000000000000000000" ]; then
+            echo "mode=all" >> "$GITHUB_OUTPUT"
+            echo "filter=" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          changed_dirs="$(
+            git diff --name-only "$BEFORE_SHA" "${{ github.sha }}" |
+              awk -F/ 'NF > 1 && $1 !~ /^\./ && $1 != "site" { print $1 }' |
+              sort -u
+          )"
+
+          if [ -z "$changed_dirs" ]; then
+            echo "mode=skip" >> "$GITHUB_OUTPUT"
+            echo "filter=" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          {
+            echo "mode=partial"
+            echo "filter<<EOF"
+            echo "$changed_dirs"
+            echo "EOF"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: 打包课程目录
+        if: steps.archive-scope.outputs.mode != 'skip'
+        working-directory: site
+        env:
+          COURSE_ARCHIVE_FILTER: ${{ steps.archive-scope.outputs.filter }}
+        run: npm run package:archives
+
+      - name: 创建或更新课程资料 Release
+        if: steps.archive-scope.outputs.mode != 'skip'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if ! gh release view course-archives >/dev/null 2>&1; then
+            gh release create course-archives \
+              --title "课程资料压缩包" \
+              --notes "由 GitHub Actions 自动更新。用于提供各课程文件夹的一键下载压缩包。单个文件请优先在网页中直接下载。"
+          fi
+          gh release upload course-archives site/.archives/*.zip --clobber
+
+      - name: 构建 GitHub Pages 站点
+        working-directory: site
+        run: npm run build
+
+      - name: 配置 GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: 上传 Pages 构建产物
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: site/dist
+
+  deploy:
+    name: 部署到 GitHub Pages
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: 发布 Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
