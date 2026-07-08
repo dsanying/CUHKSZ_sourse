@@ -125,14 +125,14 @@ const reportLines = [
   "",
 ]
 
-const docsDir = path.join(REPO_ROOT, "docs")
-mkdirSync(docsDir, { recursive: true })
+const auditDir = path.join(REPO_ROOT, ".local-audit")
+mkdirSync(auditDir, { recursive: true })
 writeFileSync(
-  path.join(docsDir, "resource-rename-plan.json"),
+  path.join(auditDir, "resource-rename-plan.json"),
   `${JSON.stringify(plans, null, 2)}\n`
 )
 writeFileSync(
-  path.join(docsDir, "resource-audit.md"),
+  path.join(auditDir, "resource-audit.md"),
   `${reportLines.join("\n")}\n`
 )
 
