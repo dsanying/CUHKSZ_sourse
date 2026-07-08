@@ -2,6 +2,10 @@ import { mkdirSync, readdirSync, statSync, writeFileSync } from "node:fs"
 import path from "node:path"
 
 import {
+  CATEGORY_DEFINITIONS,
+  classifyResource,
+} from "./resource-classifier.mjs"
+import {
   getArchiveDownloadUrl,
   getBranch,
   getRepository,
@@ -39,6 +43,7 @@ function collectFiles(courseName, currentDir, files = []) {
     const segments = relativePath.split("/")
     const extension = path.extname(entry).replace(".", "").toLowerCase() || "file"
     const parentPath = segments.slice(1, -1).join("/")
+    const category = classifyResource(courseName, relativePath)
 
     files.push({
       id: relativePath,
@@ -46,6 +51,8 @@ function collectFiles(courseName, currentDir, files = []) {
       name: entry,
       path: relativePath,
       parentPath,
+      category: category.key,
+      categoryLabel: category.label,
       extension,
       size: stats.size,
       updatedAt: stats.mtime.toISOString(),
@@ -84,6 +91,15 @@ const totalSize = courses.reduce((sum, course) => sum + course.totalSize, 0)
 const extensions = Array.from(
   new Set(courses.flatMap((course) => course.files.map((file) => file.extension)))
 ).sort()
+const categories = CATEGORY_DEFINITIONS.map((category) => ({
+  key: category.key,
+  label: category.label,
+  count: courses.reduce(
+    (sum, course) =>
+      sum + course.files.filter((file) => file.category === category.key).length,
+    0
+  ),
+}))
 
 const manifest = {
   generatedAt,
@@ -95,6 +111,7 @@ const manifest = {
     fileCount,
     totalSize,
     extensions,
+    categories,
   },
   courses,
 }
