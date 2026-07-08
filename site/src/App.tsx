@@ -2,11 +2,15 @@ import * as React from "react"
 import {
   ArchiveIcon,
   BookOpenIcon,
+  ChevronDownIcon,
+  ChevronRightIcon,
   DownloadIcon,
   ExternalLinkIcon,
   FileIcon,
   FilterIcon,
   FolderArchiveIcon,
+  FolderIcon,
+  EyeIcon,
   LoaderCircleIcon,
   MoonIcon,
   SearchIcon,
@@ -56,6 +60,17 @@ const EXTENSION_LABELS: Record<string, string> = {
   ppt: "PPT",
   pptx: "PPT",
   zip: "ZIP",
+  xls: "Excel",
+  xlsx: "Excel",
+}
+
+type ResourceFolder = {
+  key: string
+  name: string
+  fileCount: number
+  totalSize: number
+  latestUpdate: string
+  files: ResourceFile[]
 }
 
 function formatBytes(bytes: number) {
@@ -81,6 +96,16 @@ function formatDate(value: string) {
   }).format(new Date(value))
 }
 
+function formatDateTime(value: string) {
+  return new Intl.DateTimeFormat("zh-CN", {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+  }).format(new Date(value))
+}
+
 function getExtensionLabel(extension: string) {
   return EXTENSION_LABELS[extension] ?? extension.toUpperCase()
 }
@@ -100,6 +125,37 @@ function filterCourse(course: Course, search: string, category: string) {
   })
 
   return { ...course, files, fileCount: files.length }
+}
+
+function groupFilesByFolder(files: ResourceFile[]) {
+  const folders = new Map<string, ResourceFolder>()
+
+  for (const file of files) {
+    const folderName = file.parentPath || file.categoryLabel
+    const folder = folders.get(folderName)
+
+    if (folder) {
+      folder.fileCount += 1
+      folder.totalSize += file.size
+      folder.latestUpdate =
+        file.updatedAt > folder.latestUpdate ? file.updatedAt : folder.latestUpdate
+      folder.files.push(file)
+      continue
+    }
+
+    folders.set(folderName, {
+      key: folderName,
+      name: folderName,
+      fileCount: 1,
+      totalSize: file.size,
+      latestUpdate: file.updatedAt,
+      files: [file],
+    })
+  }
+
+  return Array.from(folders.values()).sort((a, b) =>
+    a.name.localeCompare(b.name, "zh-Hans-CN")
+  )
 }
 
 function useManifest() {
@@ -215,6 +271,26 @@ function CourseFilter({
   )
 }
 
+function FilePreviewLink({ file }: { file: ResourceFile }) {
+  if (!file.previewUrl || !file.previewKind) {
+    return null
+  }
+
+  return (
+    <Tooltip>
+      <TooltipTrigger asChild>
+        <Button asChild variant="outline" size="sm">
+          <a href={file.previewUrl} target="_blank" rel="noreferrer">
+            <EyeIcon data-icon="inline-start" />
+            预览
+          </a>
+        </Button>
+      </TooltipTrigger>
+      <TooltipContent>在新标签页打开预览</TooltipContent>
+    </Tooltip>
+  )
+}
+
 function FileRow({ file }: { file: ResourceFile }) {
   const detailPath = file.parentPath
     .split("/")
@@ -238,6 +314,7 @@ function FileRow({ file }: { file: ResourceFile }) {
         </div>
       </div>
       <div className="flex gap-2 sm:justify-end">
+        <FilePreviewLink file={file} />
         <Button asChild size="sm">
           <a href={file.rawUrl} download>
             <DownloadIcon data-icon="inline-start" />
@@ -259,7 +336,57 @@ function FileRow({ file }: { file: ResourceFile }) {
   )
 }
 
-function CourseCard({ course }: { course: Course }) {
+function FolderSection({ folder }: { folder: ResourceFolder }) {
+  const [isOpen, setIsOpen] = React.useState(false)
+
+  return (
+    <div className="border-t first:border-t-0">
+      <button
+        type="button"
+        className="grid w-full gap-3 py-3 text-left text-sm sm:grid-cols-[minmax(0,1fr)_auto] sm:items-center"
+        onClick={() => setIsOpen((value) => !value)}
+        aria-expanded={isOpen}
+      >
+        <div className="flex min-w-0 gap-3">
+          <div className="mt-0.5 flex size-9 shrink-0 items-center justify-center rounded-lg bg-muted text-muted-foreground">
+            <FolderIcon className="size-4" />
+          </div>
+          <div className="min-w-0">
+            <div className="flex min-w-0 items-center gap-2">
+              {isOpen ? (
+                <ChevronDownIcon className="size-4 shrink-0 text-muted-foreground" />
+              ) : (
+                <ChevronRightIcon className="size-4 shrink-0 text-muted-foreground" />
+              )}
+              <span className="truncate font-medium">{folder.name}</span>
+            </div>
+            <div className="mt-1 flex flex-wrap items-center gap-2 text-xs text-muted-foreground">
+              <Badge variant="secondary">{folder.fileCount} 个文件</Badge>
+              <span>{formatBytes(folder.totalSize)}</span>
+              <span>更新于 {formatDate(folder.latestUpdate)}</span>
+            </div>
+          </div>
+        </div>
+        <Badge
+          variant="outline"
+          className="justify-self-start px-3 py-1 sm:justify-self-end"
+        >
+          {isOpen ? "收起" : "展开"}
+        </Badge>
+      </button>
+      {isOpen ? (
+        <div className="border-t pl-4 sm:pl-12">
+          {folder.files.map((file) => (
+            <FileRow key={file.id} file={file} />
+          ))}
+        </div>
+      ) : null}
+    </div>
+  )
+}
+
+function CourseCard({ course, isSearching }: { course: Course; isSearching: boolean }) {
+  const folders = React.useMemo(() => groupFilesByFolder(course.files), [course.files])
   const shownFiles = course.files.slice(0, 12)
   const hiddenCount = course.files.length - shownFiles.length
 
@@ -281,14 +408,22 @@ function CourseCard({ course }: { course: Course }) {
         </CardAction>
       </CardHeader>
       <CardContent>
-        {shownFiles.map((file) => (
-          <FileRow key={file.id} file={file} />
-        ))}
-        {hiddenCount > 0 ? (
-          <div className="border-t pt-3 text-sm text-muted-foreground">
-            还有 {hiddenCount} 个文件。使用搜索或课程筛选可以继续缩小范围。
-          </div>
-        ) : null}
+        {isSearching ? (
+          <>
+            {shownFiles.map((file) => (
+              <FileRow key={file.id} file={file} />
+            ))}
+            {hiddenCount > 0 ? (
+              <div className="border-t pt-3 text-sm text-muted-foreground">
+                还有 {hiddenCount} 个文件。使用搜索或课程筛选可以继续缩小范围。
+              </div>
+            ) : null}
+          </>
+        ) : (
+          folders.map((folder) => (
+            <FolderSection key={folder.key} folder={folder} />
+          ))
+        )}
       </CardContent>
     </Card>
   )
@@ -344,6 +479,7 @@ export function App() {
     (sum, course) => sum + course.files.length,
     0
   )
+  const isSearching = Boolean(search.trim())
 
   if (error) {
     return <ErrorState message={error} />
@@ -388,7 +524,7 @@ export function App() {
             </div>
           </div>
 
-          <div className="grid gap-3 sm:grid-cols-3">
+          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
             <Card size="sm">
               <CardHeader>
                 <CardDescription>课程目录</CardDescription>
@@ -405,6 +541,12 @@ export function App() {
               <CardHeader>
                 <CardDescription>资料总量</CardDescription>
                 <CardTitle>{formatBytes(manifest.stats.totalSize)}</CardTitle>
+              </CardHeader>
+            </Card>
+            <Card size="sm">
+              <CardHeader>
+                <CardDescription>网站更新</CardDescription>
+                <CardTitle>{formatDateTime(manifest.generatedAt)}</CardTitle>
               </CardHeader>
             </Card>
           </div>
@@ -496,7 +638,11 @@ export function App() {
           {visibleCourses.length > 0 ? (
             <div className="flex flex-col gap-4">
               {visibleCourses.map((course) => (
-                <CourseCard key={course.name} course={course} />
+                <CourseCard
+                  key={course.name}
+                  course={course}
+                  isSearching={isSearching}
+                />
               ))}
             </div>
           ) : (
