@@ -22,18 +22,18 @@ const branch = getBranch()
 const generatedAt = new Date().toISOString()
 const OFFICE_PREVIEW_EXTENSIONS = new Set(["doc", "docx", "ppt", "pptx", "xls", "xlsx"])
 
-function getPreview(rawUrl, extension) {
+function getPreview(githubUrl, extension) {
   if (extension === "pdf") {
     return {
       previewKind: "pdf",
-      previewUrl: rawUrl,
+      previewUrl: githubUrl,
     }
   }
 
   if (OFFICE_PREVIEW_EXTENSIONS.has(extension)) {
     return {
       previewKind: "office",
-      previewUrl: `https://view.officeapps.live.com/op/embed.aspx?src=${encodeURIComponent(rawUrl)}`,
+      previewUrl: githubUrl,
     }
   }
 
@@ -67,7 +67,8 @@ function collectFiles(courseName, currentDir, files = []) {
     const parentPath = segments.slice(1, -1).join("/")
     const category = classifyResource(courseName, relativePath)
     const rawUrl = `https://raw.githubusercontent.com/${repository}/${branch}/${encodePathForUrl(relativePath)}`
-    const preview = getPreview(rawUrl, extension)
+    const githubUrl = `https://github.com/${repository}/blob/${branch}/${encodePathForUrl(relativePath)}`
+    const preview = getPreview(githubUrl, extension)
 
     files.push({
       id: relativePath,
@@ -81,7 +82,7 @@ function collectFiles(courseName, currentDir, files = []) {
       size: stats.size,
       updatedAt: stats.mtime.toISOString(),
       rawUrl,
-      githubUrl: `https://github.com/${repository}/blob/${branch}/${encodePathForUrl(relativePath)}`,
+      githubUrl,
       ...preview,
     })
   }

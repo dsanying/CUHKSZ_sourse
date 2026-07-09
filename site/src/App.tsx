@@ -286,7 +286,7 @@ function FilePreviewLink({ file }: { file: ResourceFile }) {
           </a>
         </Button>
       </TooltipTrigger>
-      <TooltipContent>在新标签页打开预览</TooltipContent>
+      <TooltipContent>在 GitHub 新标签页预览</TooltipContent>
     </Tooltip>
   )
 }
