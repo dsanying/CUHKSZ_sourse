@@ -10,6 +10,7 @@ export type ResourceFile = {
   size: number
   updatedAt: string
   rawUrl: string
+  jsdelivrUrl: string
   githubUrl: string
   previewKind: "pdf" | "office" | null
   previewUrl: string | null

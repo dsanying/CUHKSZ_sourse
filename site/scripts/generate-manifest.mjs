@@ -20,13 +20,20 @@ import {
 const repository = getRepository()
 const branch = getBranch()
 const generatedAt = new Date().toISOString()
-const OFFICE_PREVIEW_EXTENSIONS = new Set(["doc", "docx", "ppt", "pptx", "xls", "xlsx"])
+const OFFICE_PREVIEW_EXTENSIONS = new Set([
+  "doc",
+  "docx",
+  "ppt",
+  "pptx",
+  "xls",
+  "xlsx",
+])
 
-function getPreview(githubUrl, extension) {
+function getPreview(rawUrl, githubUrl, extension) {
   if (extension === "pdf") {
     return {
       previewKind: "pdf",
-      previewUrl: githubUrl,
+      previewUrl: rawUrl,
     }
   }
 
@@ -63,12 +70,14 @@ function collectFiles(courseName, currentDir, files = []) {
 
     const relativePath = toPosixPath(path.relative(REPO_ROOT, absolutePath))
     const segments = relativePath.split("/")
-    const extension = path.extname(entry).replace(".", "").toLowerCase() || "file"
+    const extension =
+      path.extname(entry).replace(".", "").toLowerCase() || "file"
     const parentPath = segments.slice(1, -1).join("/")
     const category = classifyResource(courseName, relativePath)
     const rawUrl = `https://raw.githubusercontent.com/${repository}/${branch}/${encodePathForUrl(relativePath)}`
     const githubUrl = `https://github.com/${repository}/blob/${branch}/${encodePathForUrl(relativePath)}`
-    const preview = getPreview(githubUrl, extension)
+    const jsdelivrUrl = `https://cdn.jsdelivr.net/gh/${repository}@${branch}/${encodePathForUrl(relativePath)}`
+    const preview = getPreview(rawUrl, githubUrl, extension)
 
     files.push({
       id: relativePath,
@@ -82,6 +91,7 @@ function collectFiles(courseName, currentDir, files = []) {
       size: stats.size,
       updatedAt: stats.mtime.toISOString(),
       rawUrl,
+      jsdelivrUrl,
       githubUrl,
       ...preview,
     })
@@ -96,8 +106,7 @@ const courses = getTopLevelResourceDirs().map((courseName) => {
   )
   const totalSize = files.reduce((sum, file) => sum + file.size, 0)
   const latestUpdate = files.reduce(
-    (latest, file) =>
-      file.updatedAt > latest ? file.updatedAt : latest,
+    (latest, file) => (file.updatedAt > latest ? file.updatedAt : latest),
     "1970-01-01T00:00:00.000Z"
   )
 
@@ -115,14 +124,17 @@ const courses = getTopLevelResourceDirs().map((courseName) => {
 const fileCount = courses.reduce((sum, course) => sum + course.fileCount, 0)
 const totalSize = courses.reduce((sum, course) => sum + course.totalSize, 0)
 const extensions = Array.from(
-  new Set(courses.flatMap((course) => course.files.map((file) => file.extension)))
+  new Set(
+    courses.flatMap((course) => course.files.map((file) => file.extension))
+  )
 ).sort()
 const categories = CATEGORY_DEFINITIONS.map((category) => ({
   key: category.key,
   label: category.label,
   count: courses.reduce(
     (sum, course) =>
-      sum + course.files.filter((file) => file.category === category.key).length,
+      sum +
+      course.files.filter((file) => file.category === category.key).length,
     0
   ),
 }))

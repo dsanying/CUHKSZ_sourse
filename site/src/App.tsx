@@ -111,13 +111,16 @@ function getExtensionLabel(extension: string) {
 }
 
 function matchesSearch(file: ResourceFile, search: string) {
-  const text = `${file.course} ${file.name} ${file.path} ${file.parentPath}`.toLowerCase()
+  const text =
+    `${file.course} ${file.name} ${file.path} ${file.parentPath}`.toLowerCase()
   return text.includes(search.toLowerCase())
 }
 
 function filterCourse(course: Course, search: string, category: string) {
   const files = course.files.filter((file) => {
-    const searchMatched = search.trim() ? matchesSearch(file, search.trim()) : true
+    const searchMatched = search.trim()
+      ? matchesSearch(file, search.trim())
+      : true
     const categoryMatched =
       category === "all" ? true : file.category === category
 
@@ -138,7 +141,9 @@ function groupFilesByFolder(files: ResourceFile[]) {
       folder.fileCount += 1
       folder.totalSize += file.size
       folder.latestUpdate =
-        file.updatedAt > folder.latestUpdate ? file.updatedAt : folder.latestUpdate
+        file.updatedAt > folder.latestUpdate
+          ? file.updatedAt
+          : folder.latestUpdate
       folder.files.push(file)
       continue
     }
@@ -218,8 +223,14 @@ function ThemeToggle() {
           onClick={() => {
             const nextTheme = isDark ? "light" : "dark"
             localStorage.setItem("theme", nextTheme)
-            document.documentElement.classList.toggle("dark", nextTheme === "dark")
-            document.documentElement.classList.toggle("light", nextTheme === "light")
+            document.documentElement.classList.toggle(
+              "dark",
+              nextTheme === "dark"
+            )
+            document.documentElement.classList.toggle(
+              "light",
+              nextTheme === "light"
+            )
             setIsDark(nextTheme === "dark")
           }}
         >
@@ -286,8 +297,68 @@ function FilePreviewLink({ file }: { file: ResourceFile }) {
           </a>
         </Button>
       </TooltipTrigger>
-      <TooltipContent>在 GitHub 新标签页预览</TooltipContent>
+      <TooltipContent>
+        {file.previewKind === "pdf"
+          ? "在新标签页预览 PDF"
+          : "在 GitHub 新标签页查看"}
+      </TooltipContent>
     </Tooltip>
+  )
+}
+
+function FileDownloadButton({ file }: { file: ResourceFile }) {
+  const [downloadSource, setDownloadSource] = React.useState<
+    "github" | "jsdelivr" | null
+  >(null)
+
+  async function downloadFromUrl(url: string) {
+    const response = await fetch(url)
+
+    if (!response.ok) {
+      throw new Error(`HTTP ${response.status}`)
+    }
+
+    const blob = await response.blob()
+    const objectUrl = URL.createObjectURL(blob)
+    const link = document.createElement("a")
+
+    link.href = objectUrl
+    link.download = file.name
+    document.body.append(link)
+    link.click()
+    link.remove()
+    window.setTimeout(() => URL.revokeObjectURL(objectUrl), 0)
+  }
+
+  async function handleDownload() {
+    try {
+      setDownloadSource("github")
+      await downloadFromUrl(file.rawUrl)
+    } catch {
+      try {
+        setDownloadSource("jsdelivr")
+        await downloadFromUrl(file.jsdelivrUrl)
+      } catch {
+        window.alert(
+          "下载失败：GitHub 与 jsDelivr 代理都暂时无法访问。可以稍后重试，或使用国内镜像站点。"
+        )
+      }
+    } finally {
+      setDownloadSource(null)
+    }
+  }
+
+  const isDownloading = downloadSource !== null
+
+  return (
+    <Button size="sm" onClick={handleDownload} disabled={isDownloading}>
+      {isDownloading ? (
+        <LoaderCircleIcon data-icon="inline-start" className="animate-spin" />
+      ) : (
+        <DownloadIcon data-icon="inline-start" />
+      )}
+      下载
+    </Button>
   )
 }
 
@@ -315,16 +386,16 @@ function FileRow({ file }: { file: ResourceFile }) {
       </div>
       <div className="flex gap-2 sm:justify-end">
         <FilePreviewLink file={file} />
-        <Button asChild size="sm">
-          <a href={file.rawUrl} download>
-            <DownloadIcon data-icon="inline-start" />
-            下载
-          </a>
-        </Button>
+        <FileDownloadButton file={file} />
         <Tooltip>
           <TooltipTrigger asChild>
             <Button asChild variant="outline" size="icon-sm">
-              <a href={file.githubUrl} target="_blank" rel="noreferrer" aria-label="在 GitHub 查看">
+              <a
+                href={file.githubUrl}
+                target="_blank"
+                rel="noreferrer"
+                aria-label="在 GitHub 查看"
+              >
                 <ExternalLinkIcon data-icon="inline-start" />
               </a>
             </Button>
@@ -385,8 +456,17 @@ function FolderSection({ folder }: { folder: ResourceFolder }) {
   )
 }
 
-function CourseCard({ course, isSearching }: { course: Course; isSearching: boolean }) {
-  const folders = React.useMemo(() => groupFilesByFolder(course.files), [course.files])
+function CourseCard({
+  course,
+  isSearching,
+}: {
+  course: Course
+  isSearching: boolean
+}) {
+  const folders = React.useMemo(
+    () => groupFilesByFolder(course.files),
+    [course.files]
+  )
   const shownFiles = course.files.slice(0, 12)
   const hiddenCount = course.files.length - shownFiles.length
 
@@ -617,7 +697,10 @@ export function App() {
             </div>
 
             <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-              <Tabs value={selectedCategory} onValueChange={setSelectedCategory}>
+              <Tabs
+                value={selectedCategory}
+                onValueChange={setSelectedCategory}
+              >
                 <TabsList className="flex-wrap">
                   <TabsTrigger value="all">全部资料</TabsTrigger>
                   {manifest.stats.categories.map((category) => (
@@ -628,7 +711,8 @@ export function App() {
                 </TabsList>
               </Tabs>
               <div className="text-sm text-muted-foreground">
-                当前显示 {visibleCourses.length} 个课程分组，{visibleFileCount} 个文件
+                当前显示 {visibleCourses.length} 个课程分组，{visibleFileCount}{" "}
+                个文件
               </div>
             </div>
           </div>
