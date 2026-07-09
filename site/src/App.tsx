@@ -307,12 +307,10 @@ function FilePreviewLink({ file }: { file: ResourceFile }) {
 }
 
 function FileDownloadButton({ file }: { file: ResourceFile }) {
-  const [downloadSource, setDownloadSource] = React.useState<
-    "github" | "jsdelivr" | null
-  >(null)
+  const [isDownloading, setIsDownloading] = React.useState(false)
 
-  async function downloadFromUrl(url: string) {
-    const response = await fetch(url)
+  async function downloadFromUrl(url: string, signal: AbortSignal) {
+    const response = await fetch(url, { signal })
 
     if (!response.ok) {
       throw new Error(`HTTP ${response.status}`)
@@ -331,24 +329,46 @@ function FileDownloadButton({ file }: { file: ResourceFile }) {
   }
 
   async function handleDownload() {
+    const sources = [file.lanzouUrl, file.rawUrl, file.jsdelivrUrl].filter(
+      (source): source is string => Boolean(source)
+    )
+    const failures: string[] = []
+
+    setIsDownloading(true)
+
     try {
-      setDownloadSource("github")
-      await downloadFromUrl(file.rawUrl)
-    } catch {
-      try {
-        setDownloadSource("jsdelivr")
-        await downloadFromUrl(file.jsdelivrUrl)
-      } catch {
-        window.alert(
-          "下载失败：GitHub 与 jsDelivr 代理都暂时无法访问。可以稍后重试，或使用国内镜像站点。"
-        )
+      for (const source of sources) {
+        const controller = new AbortController()
+        const timeout = window.setTimeout(() => controller.abort(), 15000)
+
+        try {
+          await downloadFromUrl(source, controller.signal)
+          return
+        } catch (error) {
+          failures.push(error instanceof Error ? error.message : "未知错误")
+        } finally {
+          window.clearTimeout(timeout)
+        }
       }
+
+      window.alert(
+        `下载失败：蓝奏云、GitHub raw 与 jsDelivr 都暂时无法访问。可以稍后重试。\n${failures
+          .filter(Boolean)
+          .slice(0, 3)
+          .join("；")}`
+      )
     } finally {
-      setDownloadSource(null)
+      setIsDownloading(false)
     }
   }
 
-  const isDownloading = downloadSource !== null
+  const hasDownloadSource = Boolean(
+    file.lanzouUrl || file.rawUrl || file.jsdelivrUrl
+  )
+
+  if (!hasDownloadSource) {
+    return null
+  }
 
   return (
     <Button size="sm" onClick={handleDownload} disabled={isDownloading}>

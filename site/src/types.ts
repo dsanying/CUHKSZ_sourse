@@ -11,6 +11,7 @@ export type ResourceFile = {
   updatedAt: string
   rawUrl: string
   jsdelivrUrl: string
+  lanzouUrl?: string
   githubUrl: string
   previewKind: "pdf" | "office" | null
   previewUrl: string | null

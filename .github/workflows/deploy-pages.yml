@@ -35,6 +35,19 @@ jobs:
         working-directory: site
         run: npm ci
 
+      - name: 同步资料到蓝奏云
+        continue-on-error: true
+        working-directory: site
+        env:
+          LANZOU_APP_TOKEN: ${{ secrets.LANZOU_APP_TOKEN }}
+          LANZOU_UUID: ${{ secrets.LANZOU_UUID }}
+          LANZOU_COOKIE: ${{ secrets.LANZOU_COOKIE }}
+          LANZOU_ACCOUNT: ${{ secrets.LANZOU_ACCOUNT }}
+          LANZOU_ROOT_FOLDER_ID: ${{ secrets.LANZOU_ROOT_FOLDER_ID }}
+          LANZOU_ROOT_FOLDER_NAME: CUHKSZ_sourse
+          LANZOU_ALLOW_PARTIAL: "true"
+        run: npm run sync:lanzou
+
       - name: 生成资料清单
         working-directory: site
         run: npm run generate:manifest

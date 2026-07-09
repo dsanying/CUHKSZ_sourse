@@ -16,10 +16,12 @@ import {
   toPosixPath,
   encodePathForUrl,
 } from "./repo-utils.mjs"
+import { applyLanzouUrls, readLanzouLookup } from "./lanzou-manifest.mjs"
 
 const repository = getRepository()
 const branch = getBranch()
 const generatedAt = new Date().toISOString()
+const lanzouLookup = readLanzouLookup()
 const OFFICE_PREVIEW_EXTENSIONS = new Set([
   "doc",
   "docx",
@@ -101,8 +103,11 @@ function collectFiles(courseName, currentDir, files = []) {
 }
 
 const courses = getTopLevelResourceDirs().map((courseName) => {
-  const files = collectFiles(courseName, path.join(REPO_ROOT, courseName)).sort(
-    (a, b) => a.path.localeCompare(b.path, "zh-Hans-CN")
+  const files = applyLanzouUrls(
+    collectFiles(courseName, path.join(REPO_ROOT, courseName)).sort((a, b) =>
+      a.path.localeCompare(b.path, "zh-Hans-CN")
+    ),
+    lanzouLookup
   )
   const totalSize = files.reduce((sum, file) => sum + file.size, 0)
   const latestUpdate = files.reduce(

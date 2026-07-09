@@ -7,6 +7,7 @@
     "predev": "npm run generate:manifest",
     "dev": "vite",
     "generate:manifest": "node scripts/generate-manifest.mjs",
+    "sync:lanzou": "node scripts/sync-lanzou.mjs",
     "plan:renames": "node scripts/plan-resource-renames.mjs",
     "apply:renames": "node scripts/apply-resource-renames.mjs",
     "audit:pdf-titles": "python3 scripts/audit-pdf-titles.py",
