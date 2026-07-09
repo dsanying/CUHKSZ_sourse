@@ -12,12 +12,17 @@ const CATEGORY_BY_KEY = new Map(
 )
 
 const NOISE_PATTERNS = [
-  /\bZ-Library\b/gi,
+  /\bZ[-_\s]*Library\b/gi,
   /\bmodified\b/gi,
   /\bStudent Value Edition\b/gi,
   /\bGlobal Edition\b/gi,
   /\bTextbook\b/gi,
   /\bRecommended Textbook\b/gi,
+  /\bCourse Documents\b/gi,
+  /\bImportant Course Documents\b/gi,
+  /\bContent Collection\b/gi,
+  /\bBlackboard\b/gi,
+  /(?:^|[_\s-])内容(?:[_\s-]|$)/g,
   /00001/g,
 ]
 
@@ -53,6 +58,47 @@ function normalizeSeparators(value) {
     .replace(/\s+/g, "_")
     .replace(/_+/g, "_")
     .replace(/^_+|_+$/g, "")
+}
+
+function stripDownloadedCopySuffix(value) {
+  return value
+    .replace(/\s*[\(（]\s*(?:copy|副本|\d+)\s*[\)）]\s*$/i, "")
+    .replace(/\s*-\s*副本\s*$/i, "")
+}
+
+function normalizeSeriesNumbers(value) {
+  return value
+    .replace(/\b(Lecture|Lec|Tutorial|Tutor|Assignment|Homework|HW|Week|Lab|Quiz|Chapter|Part|LN|Class|Session)\s*[_-]?\s*(\d{1,2})(?=\b|_)/gi, (_, label, number) => {
+      const canonicalLabel = {
+        lec: "Lecture",
+        tutor: "Tutorial",
+        homework: "HW",
+      }[label.toLowerCase()] ?? label[0].toUpperCase() + label.slice(1)
+      return `${canonicalLabel}_${String(Number(number)).padStart(2, "0")}`
+    })
+    .replace(/\bL(\d{1,2})(?=\b|_)/gi, (_, number) => `Lecture_${String(Number(number)).padStart(2, "0")}`)
+}
+
+function removeDuplicateSeriesLabels(value) {
+  const seriesLabels =
+    "Lecture|Week|Tutorial|Assignment|HW|Lab|Quiz|Chapter|Part|Session|Class|Practice|LN|Module"
+
+  return value
+    .replace(
+      new RegExp(`(^|_)(${seriesLabels})_(\\d{1,2})_\\2_?(\\d{1,2})(?=$|_|[^0-9])`, "gi"),
+      (match, prefix, label, firstNumber, secondNumber) =>
+        Number(firstNumber) === Number(secondNumber)
+          ? `${prefix}${label}_${String(Number(firstNumber)).padStart(2, "0")}`
+          : match
+    )
+    .replace(
+      new RegExp(`(^|_)(${seriesLabels})_([IVX]+)_\\2_([IVX]+)(?=$|_)`, "gi"),
+      (match, prefix, label, firstNumber, secondNumber) =>
+        firstNumber.toUpperCase() === secondNumber.toUpperCase()
+          ? `${prefix}${label}_${firstNumber.toUpperCase()}`
+          : match
+    )
+    .replace(/Module_([IVX]+)_([A-Za-z]+)_Module_\1_\2/gi, "Module_$1_$2")
 }
 
 function normalizeEdition(value) {
@@ -123,6 +169,9 @@ export function normalizeTitle(rawTitle) {
     .replace(/^c[-_]+/i, "")
     .replace(/（/g, "(")
     .replace(/）/g, ")")
+    .replace(/[_\s-]+/g, "_")
+
+  title = stripDownloadedCopySuffix(title)
 
   for (const pattern of NOISE_PATTERNS) {
     title = title.replace(pattern, "")
@@ -136,7 +185,9 @@ export function normalizeTitle(rawTitle) {
     .replace(/_?\(\s*\)_?/g, "_")
     .replace(/\s+\./g, ".")
 
-  return normalizeSeparators(normalizeEdition(title))
+  return removeDuplicateSeriesLabels(
+    normalizeSeriesNumbers(normalizeSeparators(normalizeEdition(title)))
+  )
 }
 
 function inferExamName(courseName, relativePath) {

@@ -45,11 +45,11 @@ function makeUniquePath(targetPath, usedPaths) {
   const extension = path.extname(targetPath)
   const base = targetPath.slice(0, -extension.length)
   let index = 2
-  let candidate = `${base}_${index}${extension}`
+  let candidate = `${base}_v${index}${extension}`
 
   while (usedPaths.has(candidate)) {
     index += 1
-    candidate = `${base}_${index}${extension}`
+    candidate = `${base}_v${index}${extension}`
   }
 
   usedPaths.add(candidate)
