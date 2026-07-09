@@ -4,7 +4,6 @@ import path from "node:path"
 
 export const SITE_DIR = path.resolve(import.meta.dirname, "..")
 export const REPO_ROOT = path.resolve(SITE_DIR, "..")
-export const ARCHIVE_TAG = "course-archives"
 
 const EXCLUDED_TOP_LEVEL = new Set([
   ".git",
@@ -71,20 +70,4 @@ export function shouldSkipFile(fileName) {
 
 export function toPosixPath(filePath) {
   return filePath.split(path.sep).join("/")
-}
-
-export function encodePathForUrl(filePath) {
-  return filePath
-    .split("/")
-    .map((part) => encodeURIComponent(part))
-    .join("/")
-}
-
-export function getArchiveName(courseName) {
-  return `${courseName}.zip`
-}
-
-export function getArchiveDownloadUrl(repository, courseName) {
-  const assetName = encodeURIComponent(getArchiveName(courseName))
-  return `https://github.com/${repository}/releases/download/${ARCHIVE_TAG}/${assetName}`
 }

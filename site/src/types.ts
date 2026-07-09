@@ -9,10 +9,16 @@ export type ResourceFile = {
   extension: string
   size: number
   updatedAt: string
-  rawUrl: string
-  jsdelivrUrl: string
   lanzouUrl?: string
-  githubUrl: string
+  downloadUrl?: string
+  isSplit?: boolean
+  parts?: Array<{
+    name: string
+    path: string
+    size: number
+    lanzouUrl: string
+    fileId?: string
+  }>
   previewKind: "pdf" | "office" | null
   previewUrl: string | null
 }
@@ -22,8 +28,8 @@ export type Course = {
   fileCount: number
   totalSize: number
   latestUpdate: string
-  archiveName: string
-  archiveUrl: string
+  folderUrl: string
+  folderPassword?: string
   files: ResourceFile[]
 }
 
@@ -31,7 +37,8 @@ export type Manifest = {
   generatedAt: string
   repository: string
   branch: string
-  releaseTag: string
+  source: string
+  storageRootUrl: string
   stats: {
     courseCount: number
     fileCount: number

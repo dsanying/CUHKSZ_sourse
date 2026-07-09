@@ -6,7 +6,6 @@ import {
   classifyResource,
 } from "./resource-classifier.mjs"
 import {
-  getArchiveDownloadUrl,
   getBranch,
   getRepository,
   getTopLevelResourceDirs,
@@ -14,43 +13,18 @@ import {
   shouldSkipFile,
   SITE_DIR,
   toPosixPath,
-  encodePathForUrl,
 } from "./repo-utils.mjs"
-import { applyLanzouUrls, readLanzouLookup } from "./lanzou-manifest.mjs"
+import {
+  applyLanzouUrls,
+  readLanzouLookup,
+  readLanzouManifest,
+} from "./lanzou-manifest.mjs"
 
 const repository = getRepository()
 const branch = getBranch()
 const generatedAt = new Date().toISOString()
+const lanzouManifest = readLanzouManifest()
 const lanzouLookup = readLanzouLookup()
-const OFFICE_PREVIEW_EXTENSIONS = new Set([
-  "doc",
-  "docx",
-  "ppt",
-  "pptx",
-  "xls",
-  "xlsx",
-])
-
-function getPreview(rawUrl, githubUrl, extension) {
-  if (extension === "pdf") {
-    return {
-      previewKind: "pdf",
-      previewUrl: rawUrl,
-    }
-  }
-
-  if (OFFICE_PREVIEW_EXTENSIONS.has(extension)) {
-    return {
-      previewKind: "office",
-      previewUrl: githubUrl,
-    }
-  }
-
-  return {
-    previewKind: null,
-    previewUrl: null,
-  }
-}
 
 function collectFiles(courseName, currentDir, files = []) {
   for (const entry of readdirSync(currentDir)) {
@@ -76,10 +50,6 @@ function collectFiles(courseName, currentDir, files = []) {
       path.extname(entry).replace(".", "").toLowerCase() || "file"
     const parentPath = segments.slice(1, -1).join("/")
     const category = classifyResource(courseName, relativePath)
-    const rawUrl = `https://raw.githubusercontent.com/${repository}/${branch}/${encodePathForUrl(relativePath)}`
-    const githubUrl = `https://github.com/${repository}/blob/${branch}/${encodePathForUrl(relativePath)}`
-    const jsdelivrUrl = `https://cdn.jsdelivr.net/gh/${repository}@${branch}/${encodePathForUrl(relativePath)}`
-    const preview = getPreview(rawUrl, githubUrl, extension)
 
     files.push({
       id: relativePath,
@@ -92,36 +62,89 @@ function collectFiles(courseName, currentDir, files = []) {
       extension,
       size: stats.size,
       updatedAt: stats.mtime.toISOString(),
-      rawUrl,
-      jsdelivrUrl,
-      githubUrl,
-      ...preview,
+      previewKind: null,
+      previewUrl: null,
     })
   }
 
   return files
 }
 
-const courses = getTopLevelResourceDirs().map((courseName) => {
-  const files = applyLanzouUrls(
-    collectFiles(courseName, path.join(REPO_ROOT, courseName)).sort((a, b) =>
-      a.path.localeCompare(b.path, "zh-Hans-CN")
-    ),
-    lanzouLookup
+function collectFilesFromLanzouManifest() {
+  return (lanzouManifest?.files || []).map((entry) => {
+    const relativePath = toPosixPath(entry.path)
+    const segments = relativePath.split("/")
+    const courseName = segments[0]
+    const name = entry.name || segments.at(-1)
+    const extension = path.extname(name).replace(".", "").toLowerCase() || "file"
+    const parentPath = segments.slice(1, -1).join("/")
+    const category = classifyResource(courseName, relativePath)
+
+    return {
+      id: relativePath,
+      course: courseName,
+      name,
+      path: relativePath,
+      parentPath,
+      category: category.key,
+      categoryLabel: category.label,
+      extension,
+      size: Number(entry.size || 0),
+      updatedAt: entry.updatedAt || lanzouManifest.generatedAt || generatedAt,
+      lanzouUrl: entry.lanzouUrl,
+      downloadUrl: entry.downloadUrl || entry.lanzouUrl,
+      isSplit: Boolean(entry.isSplit),
+      parts: entry.parts || [],
+      previewKind: null,
+      previewUrl: null,
+    }
+  })
+}
+
+function getCourseFolder(courseName) {
+  return (lanzouManifest?.courseFolders || []).find(
+    (folder) => folder.course === courseName
+  )
+}
+
+const resourceDirs = getTopLevelResourceDirs()
+const allFiles =
+  resourceDirs.length > 0
+    ? resourceDirs.flatMap((courseName) =>
+        applyLanzouUrls(
+          collectFiles(courseName, path.join(REPO_ROOT, courseName)),
+          lanzouLookup
+        )
+      )
+    : collectFilesFromLanzouManifest()
+const filesByCourse = new Map()
+
+for (const file of allFiles) {
+  const files = filesByCourse.get(file.course) || []
+  files.push(file)
+  filesByCourse.set(file.course, files)
+}
+
+const courses = Array.from(filesByCourse.entries())
+  .sort(([a], [b]) => a.localeCompare(b, "zh-Hans-CN"))
+  .map(([courseName, courseFiles]) => {
+  const files = courseFiles.sort((a, b) =>
+    a.path.localeCompare(b.path, "zh-Hans-CN")
   )
   const totalSize = files.reduce((sum, file) => sum + file.size, 0)
   const latestUpdate = files.reduce(
     (latest, file) => (file.updatedAt > latest ? file.updatedAt : latest),
     "1970-01-01T00:00:00.000Z"
   )
+  const courseFolder = getCourseFolder(courseName)
 
   return {
     name: courseName,
     fileCount: files.length,
     totalSize,
     latestUpdate,
-    archiveName: `${courseName}.zip`,
-    archiveUrl: getArchiveDownloadUrl(repository, courseName),
+    folderUrl: courseFolder?.lanzouUrl || "",
+    folderPassword: courseFolder?.password || "",
     files,
   }
 })
@@ -148,7 +171,8 @@ const manifest = {
   generatedAt,
   repository,
   branch,
-  releaseTag: "course-archives",
+  source: lanzouManifest?.source || "lanzou-classic",
+  storageRootUrl: lanzouManifest?.rootFolderUrl || "",
   stats: {
     courseCount: courses.length,
     fileCount,

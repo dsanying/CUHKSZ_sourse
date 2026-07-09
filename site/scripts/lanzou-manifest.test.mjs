@@ -33,11 +33,11 @@ test("applyLanzouUrls only adds matching Lanzou links", () => {
   const files = [
     {
       path: "ACT2111/学习资料/a.pdf",
-      rawUrl: "https://raw.githubusercontent.com/example/a.pdf",
+      size: 1024,
     },
     {
       path: "ACT2121/学习资料/b.pdf",
-      rawUrl: "https://raw.githubusercontent.com/example/b.pdf",
+      size: 2048,
     },
   ]
   const lookup = buildLanzouLookup({

@@ -8,9 +8,7 @@ import {
   ExternalLinkIcon,
   FileIcon,
   FilterIcon,
-  FolderArchiveIcon,
   FolderIcon,
-  EyeIcon,
   LoaderCircleIcon,
   MoonIcon,
   SearchIcon,
@@ -282,89 +280,27 @@ function CourseFilter({
   )
 }
 
-function FilePreviewLink({ file }: { file: ResourceFile }) {
-  if (!file.previewUrl || !file.previewKind) {
-    return null
-  }
-
-  return (
-    <Tooltip>
-      <TooltipTrigger asChild>
-        <Button asChild variant="outline" size="sm">
-          <a href={file.previewUrl} target="_blank" rel="noreferrer">
-            <EyeIcon data-icon="inline-start" />
-            预览
-          </a>
-        </Button>
-      </TooltipTrigger>
-      <TooltipContent>
-        {file.previewKind === "pdf"
-          ? "在新标签页预览 PDF"
-          : "在 GitHub 新标签页查看"}
-      </TooltipContent>
-    </Tooltip>
-  )
+function getDownloadUrl(file: ResourceFile) {
+  return file.downloadUrl || file.lanzouUrl || ""
 }
 
 function FileDownloadButton({ file }: { file: ResourceFile }) {
   const [isDownloading, setIsDownloading] = React.useState(false)
 
-  async function downloadFromUrl(url: string, signal: AbortSignal) {
-    const response = await fetch(url, { signal })
-
-    if (!response.ok) {
-      throw new Error(`HTTP ${response.status}`)
-    }
-
-    const blob = await response.blob()
-    const objectUrl = URL.createObjectURL(blob)
-    const link = document.createElement("a")
-
-    link.href = objectUrl
-    link.download = file.name
-    document.body.append(link)
-    link.click()
-    link.remove()
-    window.setTimeout(() => URL.revokeObjectURL(objectUrl), 0)
-  }
-
-  async function handleDownload() {
-    const sources = [file.lanzouUrl, file.rawUrl, file.jsdelivrUrl].filter(
-      (source): source is string => Boolean(source)
-    )
-    const failures: string[] = []
-
+  function handleDownload() {
+    const downloadUrl = getDownloadUrl(file)
     setIsDownloading(true)
 
-    try {
-      for (const source of sources) {
-        const controller = new AbortController()
-        const timeout = window.setTimeout(() => controller.abort(), 15000)
-
-        try {
-          await downloadFromUrl(source, controller.signal)
-          return
-        } catch (error) {
-          failures.push(error instanceof Error ? error.message : "未知错误")
-        } finally {
-          window.clearTimeout(timeout)
-        }
-      }
-
-      window.alert(
-        `下载失败：蓝奏云、GitHub raw 与 jsDelivr 都暂时无法访问。可以稍后重试。\n${failures
-          .filter(Boolean)
-          .slice(0, 3)
-          .join("；")}`
-      )
-    } finally {
-      setIsDownloading(false)
+    if (downloadUrl) {
+      window.open(downloadUrl, "_blank", "noopener,noreferrer")
     }
+
+    window.setTimeout(() => {
+      setIsDownloading(false)
+    }, 400)
   }
 
-  const hasDownloadSource = Boolean(
-    file.lanzouUrl || file.rawUrl || file.jsdelivrUrl
-  )
+  const hasDownloadSource = Boolean(getDownloadUrl(file))
 
   if (!hasDownloadSource) {
     return null
@@ -382,7 +318,15 @@ function FileDownloadButton({ file }: { file: ResourceFile }) {
   )
 }
 
-function FileRow({ file }: { file: ResourceFile }) {
+function FileRow({
+  file,
+  isSelected,
+  onToggleSelected,
+}: {
+  file: ResourceFile
+  isSelected: boolean
+  onToggleSelected: (fileId: string) => void
+}) {
   const detailPath = file.parentPath
     .split("/")
     .filter((segment) => segment && segment !== file.categoryLabel)
@@ -391,6 +335,13 @@ function FileRow({ file }: { file: ResourceFile }) {
   return (
     <div className="grid gap-3 border-t py-3 text-sm first:border-t-0 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-center">
       <div className="flex min-w-0 gap-3">
+        <input
+          type="checkbox"
+          checked={isSelected}
+          onChange={() => onToggleSelected(file.id)}
+          aria-label={`选择 ${file.name}`}
+          className="mt-3 size-4 shrink-0 accent-primary"
+        />
         <div className="mt-0.5 flex size-9 shrink-0 items-center justify-center rounded-lg bg-muted text-muted-foreground">
           <FileIcon className="size-4" />
         </div>
@@ -399,35 +350,28 @@ function FileRow({ file }: { file: ResourceFile }) {
           <div className="mt-1 flex flex-wrap items-center gap-2 text-xs text-muted-foreground">
             <Badge variant="outline">{getExtensionLabel(file.extension)}</Badge>
             <Badge variant="secondary">{file.categoryLabel}</Badge>
+            {file.isSplit ? <Badge variant="outline">分片</Badge> : null}
             <span>{formatBytes(file.size)}</span>
             {detailPath ? <span>{detailPath}</span> : null}
           </div>
         </div>
       </div>
       <div className="flex gap-2 sm:justify-end">
-        <FilePreviewLink file={file} />
         <FileDownloadButton file={file} />
-        <Tooltip>
-          <TooltipTrigger asChild>
-            <Button asChild variant="outline" size="icon-sm">
-              <a
-                href={file.githubUrl}
-                target="_blank"
-                rel="noreferrer"
-                aria-label="在 GitHub 查看"
-              >
-                <ExternalLinkIcon data-icon="inline-start" />
-              </a>
-            </Button>
-          </TooltipTrigger>
-          <TooltipContent>在 GitHub 查看</TooltipContent>
-        </Tooltip>
       </div>
     </div>
   )
 }
 
-function FolderSection({ folder }: { folder: ResourceFolder }) {
+function FolderSection({
+  folder,
+  selectedFileIds,
+  onToggleSelected,
+}: {
+  folder: ResourceFolder
+  selectedFileIds: Set<string>
+  onToggleSelected: (fileId: string) => void
+}) {
   const [isOpen, setIsOpen] = React.useState(false)
 
   return (
@@ -468,7 +412,12 @@ function FolderSection({ folder }: { folder: ResourceFolder }) {
       {isOpen ? (
         <div className="border-t pl-4 sm:pl-12">
           {folder.files.map((file) => (
-            <FileRow key={file.id} file={file} />
+            <FileRow
+              key={file.id}
+              file={file}
+              isSelected={selectedFileIds.has(file.id)}
+              onToggleSelected={onToggleSelected}
+            />
           ))}
         </div>
       ) : null}
@@ -479,9 +428,13 @@ function FolderSection({ folder }: { folder: ResourceFolder }) {
 function CourseCard({
   course,
   isSearching,
+  selectedFileIds,
+  onToggleSelected,
 }: {
   course: Course
   isSearching: boolean
+  selectedFileIds: Set<string>
+  onToggleSelected: (fileId: string) => void
 }) {
   const folders = React.useMemo(
     () => groupFilesByFolder(course.files),
@@ -498,20 +451,32 @@ function CourseCard({
           {course.fileCount} 个文件 · {formatBytes(course.totalSize)} · 更新于{" "}
           {formatDate(course.latestUpdate)}
         </CardDescription>
-        <CardAction>
-          <Button asChild variant="outline" size="sm">
-            <a href={course.archiveUrl}>
-              <FolderArchiveIcon data-icon="inline-start" />
-              下载课程压缩包
-            </a>
-          </Button>
-        </CardAction>
+        {course.folderUrl ? (
+          <CardAction>
+            <Button asChild variant="outline" size="sm">
+              <a href={course.folderUrl} target="_blank" rel="noreferrer">
+                <FolderIcon data-icon="inline-start" />
+                打开课程文件夹
+              </a>
+            </Button>
+          </CardAction>
+        ) : null}
       </CardHeader>
       <CardContent>
+        {course.folderPassword ? (
+          <div className="pb-3 text-xs text-muted-foreground">
+            文件夹提取码：{course.folderPassword}
+          </div>
+        ) : null}
         {isSearching ? (
           <>
             {shownFiles.map((file) => (
-              <FileRow key={file.id} file={file} />
+              <FileRow
+                key={file.id}
+                file={file}
+                isSelected={selectedFileIds.has(file.id)}
+                onToggleSelected={onToggleSelected}
+              />
             ))}
             {hiddenCount > 0 ? (
               <div className="border-t pt-3 text-sm text-muted-foreground">
@@ -521,7 +486,12 @@ function CourseCard({
           </>
         ) : (
           folders.map((folder) => (
-            <FolderSection key={folder.key} folder={folder} />
+            <FolderSection
+              key={folder.key}
+              folder={folder}
+              selectedFileIds={selectedFileIds}
+              onToggleSelected={onToggleSelected}
+            />
           ))
         )}
       </CardContent>
@@ -556,11 +526,73 @@ function ErrorState({ message }: { message: string }) {
   )
 }
 
+function BatchDownloadBar({
+  visibleFiles,
+  selectedFileIds,
+  onSelectVisible,
+  onClearSelected,
+}: {
+  visibleFiles: ResourceFile[]
+  selectedFileIds: Set<string>
+  onSelectVisible: () => void
+  onClearSelected: () => void
+}) {
+  const selectedFiles = visibleFiles.filter((file) => selectedFileIds.has(file.id))
+  const downloadableFiles = selectedFiles.filter((file) => getDownloadUrl(file))
+
+  function startBatchDownload() {
+    const openedTabs = downloadableFiles.map(() =>
+      window.open("about:blank", "_blank", "noopener,noreferrer")
+    )
+
+    downloadableFiles.forEach((file, index) => {
+      window.setTimeout(() => {
+        const tab = openedTabs[index]
+        const downloadUrl = getDownloadUrl(file)
+
+        if (tab) {
+          tab.location.href = downloadUrl
+        } else {
+          window.open(downloadUrl, "_blank", "noopener,noreferrer")
+        }
+      }, index * 350)
+    })
+  }
+
+  return (
+    <div className="flex flex-col gap-3 rounded-lg border bg-card p-3 text-sm sm:flex-row sm:items-center sm:justify-between">
+      <div className="text-muted-foreground">
+        已选择 {selectedFiles.length} 个文件，可下载 {downloadableFiles.length} 个
+      </div>
+      <div className="flex flex-wrap gap-2">
+        <Button type="button" variant="outline" size="sm" onClick={onSelectVisible}>
+          全选当前结果
+        </Button>
+        <Button type="button" variant="outline" size="sm" onClick={onClearSelected}>
+          清空选择
+        </Button>
+        <Button
+          type="button"
+          size="sm"
+          onClick={startBatchDownload}
+          disabled={downloadableFiles.length === 0}
+        >
+          <DownloadIcon data-icon="inline-start" />
+          下载已选
+        </Button>
+      </div>
+    </div>
+  )
+}
+
 export function App() {
   const { manifest, error } = useManifest()
   const [search, setSearch] = React.useState("")
   const [selectedCourse, setSelectedCourse] = React.useState("all")
   const [selectedCategory, setSelectedCategory] = React.useState("all")
+  const [selectedFileIds, setSelectedFileIds] = React.useState<Set<string>>(
+    () => new Set()
+  )
 
   const visibleCourses = React.useMemo(() => {
     if (!manifest) {
@@ -579,7 +611,30 @@ export function App() {
     (sum, course) => sum + course.files.length,
     0
   )
+  const visibleFiles = visibleCourses.flatMap((course) => course.files)
   const isSearching = Boolean(search.trim())
+
+  function toggleSelected(fileId: string) {
+    setSelectedFileIds((current) => {
+      const next = new Set(current)
+
+      if (next.has(fileId)) {
+        next.delete(fileId)
+      } else {
+        next.add(fileId)
+      }
+
+      return next
+    })
+  }
+
+  function selectVisibleFiles() {
+    setSelectedFileIds((current) => {
+      const next = new Set(current)
+      visibleFiles.forEach((file) => next.add(file.id))
+      return next
+    })
+  }
 
   if (error) {
     return <ErrorState message={error} />
@@ -735,6 +790,13 @@ export function App() {
                 个文件
               </div>
             </div>
+
+            <BatchDownloadBar
+              visibleFiles={visibleFiles}
+              selectedFileIds={selectedFileIds}
+              onSelectVisible={selectVisibleFiles}
+              onClearSelected={() => setSelectedFileIds(new Set())}
+            />
           </div>
 
           <Separator className="mb-5" />
@@ -746,6 +808,8 @@ export function App() {
                   key={course.name}
                   course={course}
                   isSearching={isSearching}
+                  selectedFileIds={selectedFileIds}
+                  onToggleSelected={toggleSelected}
                 />
               ))}
             </div>

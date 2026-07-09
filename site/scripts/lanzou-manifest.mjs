@@ -30,10 +30,19 @@ export function buildLanzouLookup(manifest) {
       ...entry,
       path: resourcePath,
       lanzouUrl,
+      downloadUrl: String(entry.downloadUrl || "").trim(),
     })
   }
 
   return lookup
+}
+
+export function readLanzouManifest(manifestPath = LANZOU_MANIFEST_PATH) {
+  if (!existsSync(manifestPath)) {
+    return null
+  }
+
+  return JSON.parse(readFileSync(manifestPath, "utf8"))
 }
 
 export function readLanzouLookup(manifestPath = LANZOU_MANIFEST_PATH) {
@@ -56,6 +65,9 @@ export function applyLanzouUrls(files, lookup) {
     return {
       ...file,
       lanzouUrl: match.lanzouUrl,
+      downloadUrl: match.downloadUrl || match.lanzouUrl,
+      isSplit: Boolean(match.isSplit),
+      parts: match.parts || [],
     }
   })
 }
